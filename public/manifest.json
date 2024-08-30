@@ -1,9 +1,9 @@
 {
-  "short_name": "CoreUI-React",
-  "name": "CoreUI-React sample",
+  "short_name": "Cac Portal",
+  "name": "Cac Portal",
   "icons": [
     {
-      "src": "./assets/img/favicon.png",
+      "src": "./assets/img/cac_logo.png",
       "sizes": "100x100",
       "type": "image/png"
     }

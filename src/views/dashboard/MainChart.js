@@ -105,7 +105,7 @@ const MainChart = () => {
               grid: {
                 color: getStyle('--cui-border-color-translucent'),
               },
-              max: 250,
+              max: 200,
               ticks: {
                 color: getStyle('--cui-body-color'),
                 maxTicksLimit: 5,
