@@ -24,26 +24,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
-  cibCcAmex,
-  cibCcApplePay,
-  cibCcMastercard,
-  cibCcPaypal,
-  cibCcStripe,
-  cibCcVisa,
-  cibGoogle,
-  cibFacebook,
-  cibLinkedin,
-  cifBr,
-  cifEs,
-  cifFr,
-  cifIn,
-  cifPl,
-  cifUs,
-  cibTwitter,
-  cilCloudDownload,
   cilPeople,
-  cilUser,
-  cilUserFemale,
 } from '@coreui/icons'
 
 import avatar1 from 'src/assets/images/avatars/1.jpg'
@@ -53,7 +34,8 @@ import avatar4 from 'src/assets/images/avatars/4.jpg'
 import avatar5 from 'src/assets/images/avatars/5.jpg'
 import avatar6 from 'src/assets/images/avatars/6.jpg'
 
-const StudentDashBoard = () => {
+
+const Clases = () => {
 
   const tableExample = [
     {
@@ -149,7 +131,7 @@ const StudentDashBoard = () => {
   return (
     <>
       <div>
-        <h1>Student Dashboard</h1>
+        <h1>Clases</h1>
       </div>
        
       <CRow>
@@ -219,4 +201,4 @@ const StudentDashBoard = () => {
   )
 }
 
-export default StudentDashBoard;
+export default Clases;

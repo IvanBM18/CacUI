@@ -19,6 +19,9 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CCarousel,
+  CCarouselItem,
+  CImage,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
@@ -55,7 +58,13 @@ import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import MainChart from './MainChart'
 
-const Dashboard = () => {
+import AngularImg from 'src/assets/images/angular.jpg'
+import ReactImg from 'src/assets/images/react.jpg'
+import VueImg from 'src/assets/images/vue.jpg'
+
+
+
+const ejemPLO = () => {
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
     { title: 'Unique', value: '24.093 Users', percent: 20, color: 'info' },
@@ -179,6 +188,20 @@ const Dashboard = () => {
 
   return (
     <>
+      <CRow>
+        <CCarousel controls indicators>
+        <CCarouselItem>
+          <CImage className="d-block w-100" src={ReactImg} alt="slide 1" />
+        </CCarouselItem>
+        <CCarouselItem>
+          <CImage className="d-block w-100" src={VueImg} alt="slide 2" />
+        </CCarouselItem>
+        <CCarouselItem>
+          <CImage className="d-block w-100" src={AngularImg} alt="slide 3" />
+        </CCarouselItem>
+        </CCarousel>
+      </CRow>
+
       <WidgetsDropdown className="mb-4" />
       <CCard className="mb-4">
         <CCardBody>
@@ -278,4 +301,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default ejemPLO

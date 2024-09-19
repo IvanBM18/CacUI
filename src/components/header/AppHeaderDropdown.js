@@ -32,14 +32,14 @@ const AppHeaderDropdown = () => {
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownHeader className="bg-body-secondary fw-semibold mb-2">Cuenta</CDropdownHeader>
-        <CDropdownItem href="#">
+        <CDropdownItem href="#/charts">
           <CIcon icon={cilFile} className="me-2" />
           Reportes
           <CBadge color="primary" className="ms-2">
             42
           </CBadge>
         </CDropdownItem>
-        <CDropdownItem href="#">
+        <CDropdownItem href="#/courses">
           <CIcon icon={cilTask} className="me-2" />
           Clases
           <CBadge color="danger" className="ms-2">
@@ -47,16 +47,16 @@ const AppHeaderDropdown = () => {
           </CBadge>
         </CDropdownItem>
         <CDropdownHeader className="bg-body-secondary fw-semibold my-2">Ajustes</CDropdownHeader>
-        <CDropdownItem href="#">
+        <CDropdownItem href="#/perfil">
           <CIcon icon={cilUser} className="me-2" />
           Perfil
         </CDropdownItem>
-        <CDropdownItem href="#">
+        <CDropdownItem href="#/settings">
           <CIcon icon={cilSettings} className="me-2" />
           Ajustes
         </CDropdownItem>
         <CDropdownDivider />
-        <CDropdownItem href="#">
+        <CDropdownItem href="#/login">
           <CIcon icon={cilLockLocked} className="me-2" />
           Cerrar Sesion
         </CDropdownItem>
