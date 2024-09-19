@@ -46,7 +46,7 @@ const Login = () => {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton color="primary" className="px-4" href="#">
                           Inicia Sesion
                         </CButton>
                       </CCol>
