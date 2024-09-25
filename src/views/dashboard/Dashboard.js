@@ -1,5 +1,5 @@
+import { useState } from 'react'
 import React from 'react'
-import classNames from 'classnames'
 
 import {
   CAvatar,
@@ -9,6 +9,11 @@ import {
   CCard,
   CCardBody,
   CCol,
+  CModal,
+  CModalBody,
+  CModalHeader,
+  CModalTitle,
+  CModalFooter,
   CProgress,
   CRow,
   CTable,
@@ -32,6 +37,7 @@ import {
   cilUser,
   cilUserFemale,
 } from '@coreui/icons'
+import { DataGrid } from '@mui/x-data-grid';
 
 import avatar1 from 'src/assets/images/avatars/1.jpg'
 import avatar2 from 'src/assets/images/avatars/2.jpg'
@@ -42,14 +48,11 @@ import avatar6 from 'src/assets/images/avatars/6.jpg'
 
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import MainChart from './MainChart'
+import { DefaultModal } from '../../components/DefaultModal'
 
-import AngularImg from 'src/assets/images/angular.jpg'
-import ReactImg from 'src/assets/images/react.jpg'
-import VueImg from 'src/assets/images/vue.jpg'
+const Dashboard = () => {
 
-
-
-const ejemPLO = () => {
+  const [isOpen, setIsOpen] = useState(false)
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
     { title: 'Unique', value: '24.093 Users', percent: 20, color: 'info' },
@@ -173,21 +176,8 @@ const ejemPLO = () => {
 
   return (
     <>
-      <CRow>
-        <CCarousel controls indicators>
-        <CCarouselItem>
-          <CImage className="d-block w-100" src={ReactImg} alt="slide 1" />
-        </CCarouselItem>
-        <CCarouselItem>
-          <CImage className="d-block w-100" src={VueImg} alt="slide 2" />
-        </CCarouselItem>
-        <CCarouselItem>
-          <CImage className="d-block w-100" src={AngularImg} alt="slide 3" />
-        </CCarouselItem>
-        </CCarousel>
-      </CRow>
-
-      <WidgetsDropdown className="mb-4" />
+    <CButton color="primary" onClick={() => setIsOpen(!isOpen)}>Launch demo modal</CButton>
+    {isOpen && <DefaultModal onClose={() => setIsOpen(!isOpen)} />}
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
@@ -204,6 +194,7 @@ const ejemPLO = () => {
               <CButtonGroup className="float-end me-3">
                 {['Semanal', 'Mensual', 'Semestral'].map((value) => (
                   <CButton
+                  onClick={() => setIsOpen(true)}
                     color="outline-secondary"
                     key={value}
                     className="mx-0"
@@ -286,4 +277,4 @@ const ejemPLO = () => {
   )
 }
 
-export default ejemPLO
+export default Dashboard
