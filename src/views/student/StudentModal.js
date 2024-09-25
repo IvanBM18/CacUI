@@ -15,16 +15,15 @@ import { useState } from 'react';
 
 const StudentModal = (props) => {
   const [isFormInvalid, setInvalidated] = useState(false);
-  console.log(props);
-  let student = props.student;
+  const [student, setStudent] = useState(props.student);
+
   let mode = props.mode;
-  //Nombre //Apellido
-  //Codigo //Grupo 
-  //Fecha de registro
+  let title = mode === "Create" ? "Agregar Estudiante" : student.firstName + " " + student.lastName;
 
   const handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    console.log(student);
     if(!event.currentTarget.checkValidity()){
       console.log("Form not valid");
       setInvalidated(true);
@@ -54,6 +53,7 @@ const StudentModal = (props) => {
                 id="StudentInputFirstName"
                 label="Nombre"
                 required
+                onChange={(e) => setStudent({...student, firstName: e.target.value})}
               />
             </CCol>
             <CCol>
@@ -62,6 +62,7 @@ const StudentModal = (props) => {
                 defaultValue={student.lastName ?? ""}
                 id="StudentInputLastName"
                 label="Apellido(s)"
+                onChange={(e) => setStudent({...student, lastName: e.target.value})}
                 required
               />
             </CCol>
@@ -73,7 +74,8 @@ const StudentModal = (props) => {
               id='StudentInputEmail'
               defaultValue={student.email ?? ""}
               placeholder="Correo Institucional" 
-              aria-describedby="basic-addon2"/>
+              onChange={(e) => setStudent({...student, email: e.target.value + "@alumnos.udg.mx"})}
+              />
             <CInputGroupText>@alumnos.udg.mx</CInputGroupText>
           </CInputGroup>
         </CRow>
@@ -86,6 +88,7 @@ const StudentModal = (props) => {
               label="Codigo"
               placeholder="XXXXXXXXX" 
               required
+              onChange={(e) => setStudent({...student, code: e.target.value})}
             />
           </CCol>
           <CCol xs={5}> 
@@ -96,8 +99,10 @@ const StudentModal = (props) => {
               placeholder="XXXXXXXXX" 
               required
               value={student.group?? "Seleciona..."}
+              onChange={(e) => setStudent({...student, group: e.target.value})}
+              
             >
-              <option>Selecciona...</option>
+              <option value="">Selecciona...</option>
               <option value="Basicos">Basicos</option>
               <option value="Intermedios">Intermedios</option>
             </CFormSelect>
@@ -111,6 +116,7 @@ const StudentModal = (props) => {
               id="StudentInputRegisterDate"
               label="Fecha de Registro"
               required
+              onChange={(e) => setStudent({...student, register_date: e.target.value})}
             />
           </CCol>
         </CRow>

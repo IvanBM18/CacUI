@@ -185,7 +185,7 @@ const Dashboard = () => {
       refister_date: "Jan 1, 2023",
     },
     onClose: () => setIsOpenStudent(!isOpenStudent),
-    mode: "Create",
+    mode: "Update",
     footer: null
   }
 
