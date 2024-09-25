@@ -49,10 +49,12 @@ import avatar6 from 'src/assets/images/avatars/6.jpg'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import MainChart from './MainChart'
 import { DefaultModal } from '../../components/DefaultModal'
+import StudentModal from '../student/StudentModal'
+import { layouts } from 'chart.js'
 
 const Dashboard = () => {
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpenStudent, setIsOpenStudent] = useState(false)
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
     { title: 'Unique', value: '24.093 Users', percent: 20, color: 'info' },
@@ -174,10 +176,23 @@ const Dashboard = () => {
     },
   ]
 
+  //TODO: Eliminar esto
+  let props={
+    student: {
+      firstName: "Josefina",
+      lastName: "Rubio",
+      code: "219747661",
+      refister_date: "Jan 1, 2023",
+    },
+    onClose: () => setIsOpenStudent(!isOpenStudent),
+    mode: "Create",
+    footer: null
+  }
+
   return (
     <>
-    <CButton color="primary" onClick={() => setIsOpen(!isOpen)}>Launch demo modal</CButton>
-    {isOpen && <DefaultModal onClose={() => setIsOpen(!isOpen)} />}
+    <CButton color="primary" onClick={() => setIsOpenStudent(!isOpenStudent)}>Launch demo STUDENT</CButton>
+    {isOpenStudent && <StudentModal onClose={props.onClose} student={props.student} />}
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
@@ -194,7 +209,7 @@ const Dashboard = () => {
               <CButtonGroup className="float-end me-3">
                 {['Semanal', 'Mensual', 'Semestral'].map((value) => (
                   <CButton
-                  onClick={() => setIsOpen(true)}
+                  onClick={() => setIsOpenStudent(true)}
                     color="outline-secondary"
                     key={value}
                     className="mx-0"
