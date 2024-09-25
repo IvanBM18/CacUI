@@ -2,6 +2,10 @@ import React from 'react'
 import Login from './views/pages/login/Login'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const Settings = React.lazy(() => import('./views/settings/Settings'))
+const Users = React.lazy(() => import('./views/users/Users'))
+const Perfil = React.lazy(() => import('./views/perfil/Perfil'))
+const Clases = React.lazy(() => import('./views/courses/Clases'))
 const StudentDashBoard = React.lazy(() => import('./views/student/StudentDashBoard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
@@ -55,8 +59,12 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/students', exact: true, name: 'Alumnos', element: StudentDashBoard },
+  { path: '/students', name: 'Alumnos', element: StudentDashBoard },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/settings', name: 'Ajustes', element: Settings },
+  { path: '/users', name: 'Usuarios', element: Users },
+  { path: '/perfil', name: 'Perfil', element: Perfil },
+  { path: '/courses', name: 'Clases', element: Clases },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
