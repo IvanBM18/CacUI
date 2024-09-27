@@ -6,96 +6,41 @@ import avatar4 from 'src/assets/images/avatars/4.jpg'
 import avatar5 from 'src/assets/images/avatars/5.jpg'
 import avatar6 from 'src/assets/images/avatars/6.jpg'
 
-
-const DataAlumnos = [
+export const columns = [
   {
-    avatar: { src: avatar1},
-    user: {
-      name: 'Josefina Rubio',
-      new: true,
-      registered: 'Jan 1, 2023',
-    },
-    group: {name: 'Basicos', color: 'success'},
-    usage: {
-      value: 50,
-      period: 'Jun 11, 2023 - Jul 10, 2023',
-      color: 'success',
-    },
-    code: '219747661',
-    activity: 'INCO',
+    field: 'photo',
+    headerName: 'Photo',
+    width: 90,
+    renderCell: (params) => (
+      <img
+        src={params.value}
+        alt="Profile"
+        style={{ width: 40, height: 40, borderRadius: '50%' }}
+      />
+    ),
   },
-  {
-    avatar: { src: avatar2 },
-    user: {
-      name: 'Moises Martinez',
-      new: false,
-      registered: 'Jan 1, 2023',
-    },
-    group: {name: 'Basicos', color: 'success'},
-    usage: {
-      value: 22,
-      period: 'Jun 11, 2023 - Jul 10, 2023',
-      color: 'info',
-    },
-    code: '216735661',
-    activity: 'INFO',
-  },
-  {
-    avatar: { src: avatar3},
-    user: { name: 'Argenis Lopez', new: true, registered: 'Jan 1, 2023' },
-    group: {name: 'Basicos', color: 'success'},
-    usage: {
-      value: 74,
-      period: 'Jun 11, 2023 - Jul 10, 2023',
-      color: 'warning',
-    },
-    code: '219747162',
-    activity: 'INCO',
-  },
-  {
-    avatar: { src: avatar4 },
-    user: { name: 'Dafne Crespo', new: true, registered: 'Jan 1, 2023' },
-    group: {name: 'Basicos', color: 'success'},
-    usage: {
-      value: 98,
-      period: 'Jun 11, 2023 - Jul 10, 2023',
-      color: 'danger',
-    },
-    code: '219586925',
-    activity: 'INCO',
-  },
-  {
-    avatar: { src: avatar5},
-    user: {
-      name: 'Alexa Salcedo',
-      new: true,
-      registered: 'Jan 1, 2023',
-    },
-    group: {name: 'Intermedios', color: 'danger'},
-    usage: {
-      value: 22,
-      period: 'Jun 11, 2023 - Jul 10, 2023',
-      color: 'primary',
-    },
-    code: '219747658',
-    activity: 'INCO',
-  },
-  {
-    avatar: { src: avatar6},
-    user: {
-      name: 'Ivan Barba',
-      new: true,
-      registered: 'Jan 1, 2023',
-    },
-    group: {name: 'Intermedios', color: 'danger'},
-    usage: {
-      value: 43,
-      period: 'Jun 11, 2023 - Jul 10, 2023',
-      color: 'success',
-    },
-    code: '219747662',
-    activity: 'INCO',
-  },
+  { field: 'id', headerName: 'Codigo', width: 120 },
+  { field: 'name', headerName: 'Nombre', width: 150 },
+  { field: 'age', headerName: 'Edad', type: 'number', width: 110 },
+  { field: 'email', headerName: 'Correo', width: 200 },
+  
 ];
 
-export default DataAlumnos;
+export const rows = [
+  { photo: avatar1, id: 246808085, name: 'Juan Pérez', age: 28, email: 'juan@example.com' },
+  { photo: avatar6, id: 252429305, name: 'María López', age: 34, email: 'maria@example.com' },
+  { photo: avatar2, id: 294825846, name: 'María López', age: 34, email: 'maria@example.com' },
+  { photo: avatar3, id: 252262549, name: 'Carlos Sánchez', age: 45, email: 'carlos@example.com' },
+  { photo: avatar5, id: 290670518, name: 'Ana Gómez', age: 22, email: 'ana@example.com' },
+  { photo: avatar1, id: 246808085, name: 'Juan Pérez', age: 28, email: 'juan@example.com' },
+  { photo: avatar2, id: 294825846, name: 'María López', age: 34, email: 'maria@example.com' },
+  { photo: avatar5, id: 276674424, name: 'Carlos Sánchez', age: 45, email: 'carlos@example.com' },
+  { photo: avatar4, id: 244863814, name: 'Ana Gómez', age: 22, email: 'ana@example.com' },
+  { photo: avatar1, id: 252429305, name: 'Juan Pérez', age: 28, email: 'juan@example.com' },
+  { photo: avatar2, id: 252262549, name: 'María López', age: 34, email: 'maria@example.com' },
+  { photo: avatar3, id: 229384769 , name: 'Carlos Sánchez', age: 45, email: 'carlos@example.com' },
+  { photo: avatar4, id: 294825846, name: 'Ana Gómez', age: 22, email: 'ana@example.com' },
+  { photo: avatar6, id: 229384769 , name: 'Juan Pérez', age: 28, email: 'juan@example.com' },
+  { photo: avatar6, id: 286900080, name: 'Carlos Sánchez', age: 45, email: 'carlos@example.com' },
+  { photo: avatar4, id: 276674424, name: 'Ana Gómez', age: 22, email: 'ana@example.com' },
+];
