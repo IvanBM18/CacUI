@@ -1,8 +1,10 @@
 import React from 'react'
-
 import TablaClases from './table'
+
+
 const Clases = () => {
 
+  
   return (
     <>
       <div>

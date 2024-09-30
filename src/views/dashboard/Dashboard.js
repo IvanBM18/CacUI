@@ -176,6 +176,8 @@ const Dashboard = () => {
     },
   ]
 
+
+  
   //TODO: Eliminar esto
   let props={
     student: {
