@@ -27,19 +27,33 @@ const TablaClases = () => {
   const [isOpen, setIsOpen] = useState(false)
   //const [open, setOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
+  const [slectedMode, setSelectedMode] = useState(null);
 
   //CRUD Clase
   let props={
     row: selectedRow,
     onClose: () => setIsOpen(!isOpen),
-    mode: "Update",
+    mode: slectedMode,
     footer: null
   }
 
   const handleCellClick = (params) => {
     setSelectedRow(params.row);
+    setSelectedMode("Update");
     setIsOpen(!isOpen)
   };
+
+  const handleAddButton = () => {
+    setSelectedRow({
+      name: '',
+      admin: '', id: null ,
+      dia: '', hora: '',
+      subtemas: []
+    });
+    setSelectedMode("Create");
+    setIsOpen(!isOpen)
+  };
+  
 
 
   return (
@@ -50,6 +64,10 @@ const TablaClases = () => {
         pageSize={5}
         onCellClick={handleCellClick}
       />
+      <div className="d-flex justify-content-end mt-3">
+       <CButton color="primary" onClick={handleAddButton}> + Agregar Clase</CButton> 
+      </div>
+      
       {isOpen && <ClaseModal onClose={props.onClose} row={props.row} />}
 
     </Container>

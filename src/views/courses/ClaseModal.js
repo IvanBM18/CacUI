@@ -9,6 +9,7 @@ import { CForm,
   CInputGroupText,
   CFormSelect,
   CButton,
+  CFormTextarea,
  } from '@coreui/react';
 
 import { useState } from 'react';
@@ -16,6 +17,7 @@ import { useState } from 'react';
 const ClaseModal = (props) => {
   const [isFormInvalid, setInvalidated] = useState(false);
   const [row, setRow] = useState(props.row);
+  const [textoLista, setTextoLista] = useState(props.subtemas);
 
   let mode = props.mode;
   let title = mode === "Create" ? "Agregar Estudiante" : row.firstName + " " + row.lastName;
@@ -78,13 +80,16 @@ const ClaseModal = (props) => {
         </CRow>
         <CRow className="mt-2 mb-2">
           <CFormLabel htmlFor='StudentInputEmail'>Subtemas</CFormLabel>
-          <div>
-              <ul>
-                {row.subtemas.map((subtemas, index) => (
-                  <li key={index}>{subtemas}</li>
-                ))}
-              </ul>
-            </div>
+          <CFormTextarea
+                type="text"
+                defaultValue={row.subtemas.join(',\n') ?? ""
+                }
+                id="StudentInputLastName"
+                label="Subtemas"
+                rows={5}
+                onChange={(e) => setStudent({...row, subtemas: e.target.value})}
+                required
+              />
         </CRow>
         <CRow className="justify-content-end">
           <CCol md={{span: 3,offset: 8 }} >
