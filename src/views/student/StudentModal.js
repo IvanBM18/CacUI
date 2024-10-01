@@ -109,12 +109,12 @@ const StudentModal = (props) => {
           <CCol xs={7}> 
             <CFormInput
               type="text"
-              defaultValue={student.code ?? ""}
-              id="StudentInputCode"
+              defaultValue={student.siiauCode ?? ""}
+              id="StudentInputSiiauCode"
               label="Codigo"
               placeholder="XXXXXXXXX" 
               required
-              onChange={(e) => setStudent({...student, code: e.target.value})}
+              onChange={(e) => setStudent({...student, siiauCode: e.target.value})}
             />
           </CCol>
           <CCol xs={5}> 
@@ -135,11 +135,11 @@ const StudentModal = (props) => {
           <CCol >
             <CFormInput
               type="date"
-              defaultValue={student.register_date ?? ""}
+              defaultValue={student.registerDate ?? ""}
               id="StudentInputRegisterDate"
               label="Fecha de Registro"
               required
-              onChange={(e) => setStudent({...student, register_date: e.target.value})}
+              onChange={(e) => setStudent({...student, registerDate: e.target.value})}
             />
           </CCol>
         </CRow>
