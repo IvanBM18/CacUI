@@ -6,7 +6,7 @@ const StudentDashBoard = () => {
   return (
     <>
       <div>
-        <h1>StudentDashBoard</h1>
+        <h1>Alumnos</h1>
       </div>
       <TablaAlumnos/>
     </>

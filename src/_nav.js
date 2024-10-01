@@ -45,6 +45,12 @@ const _nav = [
     icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />
   },
   {
+    component: CNavItem,
+    name: 'Asistencias',
+    to: '/asistencia',
+    icon: <CIcon icon={cilGroup} customClassName="nav-icon" />,
+  },
+  {
     component: CNavTitle,
     name: 'Extras',
   },

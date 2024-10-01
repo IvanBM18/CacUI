@@ -1,31 +1,17 @@
 import React from 'react'
 
-import { rows, columns} from './data'
+import { clases, columns} from './data'
 import { useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { Container } from '@mui/material'
-import { Modal, Box, Typography, Button } from '@mui/material';
 import {
   CButton,
 } from '@coreui/react'
 import ClaseModal from './ClaseModal'
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
 
 const TablaClases = () => {
   const [isOpen, setIsOpen] = useState(false)
-  //const [open, setOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const [slectedMode, setSelectedMode] = useState(null);
 
@@ -59,7 +45,7 @@ const TablaClases = () => {
   return (
     <Container style={{ height: 600, width: '100%' }}>
       <DataGrid
-        rows={rows}
+        rows={clases}
         columns={columns}
         pageSize={5}
         onCellClick={handleCellClick}

@@ -72,9 +72,9 @@ const StudentModal = (props) => {
           <CInputGroup className="" >
             <CFormInput 
               id='StudentInputEmail'
-              defaultValue={student.email ?? ""}
+              defaultValue={student.correo ?? ""}
               placeholder="Correo Institucional" 
-              onChange={(e) => setStudent({...student, email: e.target.value + "@alumnos.udg.mx"})}
+              onChange={(e) => setStudent({...student, correo: e.target.value + "@alumnos.udg.mx"})}
               />
             <CInputGroupText>@alumnos.udg.mx</CInputGroupText>
           </CInputGroup>
@@ -83,28 +83,29 @@ const StudentModal = (props) => {
           <CCol xs={7}> 
             <CFormInput
               type="text"
-              defaultValue={student.code ?? ""}
+              defaultValue={student.id ?? ""}
               id="StudentInputCode"
               label="Codigo"
               placeholder="XXXXXXXXX" 
               required
-              onChange={(e) => setStudent({...student, code: e.target.value})}
+              onChange={(e) => setStudent({...student, id: e.target.value})}
             />
           </CCol>
           <CCol xs={5}> 
             <CFormSelect
-              defaultValue={student.code ?? ""}
+              defaultValue={student.id ?? ""}
               id="StudentInputCode"
-              label="Codigo"
+              label="Grupo"
               placeholder="XXXXXXXXX" 
               required
-              value={student.group?? "Seleciona..."}
+              value={student.group?? ""}
               onChange={(e) => setStudent({...student, group: e.target.value})}
               
             >
               <option value="">Selecciona...</option>
-              <option value="Basicos">Basicos</option>
-              <option value="Intermedios">Intermedios</option>
+              <option value='Basico'>Basicos</option>
+              <option value='Intermedio'>Intermedios</option>
+              <option value='Avanzado'>Avanzados</option>
             </CFormSelect>
           </CCol>
         </CRow>
