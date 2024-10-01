@@ -9,16 +9,34 @@ import { CForm,
   CInputGroupText,
   CFormSelect,
   CButton,
- } from '@coreui/react';
+  CAccordion,
+  CAccordionItem,
+  CAccordionHeader,
+  CAccordionBody,
+  CSpinner,
+  CAccordionButton
+} from '@coreui/react';
 
+import { testData } from '../../services/ai/constants';
+import RegressionService from '../../services/ai/regressionService';
+import Regression3DPlot from '../../components/graphics/Regression3DPlot';
 import { useState } from 'react';
+import RegressionUtils from '../../services/ai/RegressionUtils';
+import RegressionData from '../../services/ai/models/regressionData';
 
 const StudentModal = (props) => {
   const [isFormInvalid, setInvalidated] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [student, setStudent] = useState(props.student);
+  const [regressionData, setRegressionData] = useState(new RegressionData());
 
   let mode = props.mode;
   let title = mode === "Create" ? "Agregar Estudiante" : student.firstName + " " + student.lastName;
+
+  async function getPrediction(data) {
+    const result = await RegressionService.getPrediction(data);
+    return result;
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,15 +47,23 @@ const StudentModal = (props) => {
       setInvalidated(true);
       return;
     }
-    console.log("Form submitted");
     setInvalidated(false);
+  }
+
+  const performPrediction = async () => {
+    setLoading(true);
+    const reggresionData = RegressionUtils.mapContestsToRegressionData(testData);
+    reggresionData.setResult(await getPrediction(testData));
+    setRegressionData(reggresionData);
+    setLoading(false);
   }
   
 
 
   return (
     <DefaultModal
-      title={student.firstName + " " + student.lastName}
+      size = "lg"
+      title={title}
       onClose={props.onClose}>
         <CForm
           className="row g-3 needs-validation"
@@ -93,16 +119,13 @@ const StudentModal = (props) => {
           </CCol>
           <CCol xs={5}> 
             <CFormSelect
-              defaultValue={student.code ?? ""}
-              id="StudentInputCode"
-              label="Codigo"
-              placeholder="XXXXXXXXX" 
+              id="StudentInputGroup"
+              label="Grupo"
+              placeholder="Selecciona..." 
               required
-              value={student.group?? "Seleciona..."}
+              value={student.group? "Seleciona..." : student.group}
               onChange={(e) => setStudent({...student, group: e.target.value})}
-              
             >
-              <option value="">Selecciona...</option>
               <option value="Basicos">Basicos</option>
               <option value="Intermedios">Intermedios</option>
             </CFormSelect>
@@ -120,6 +143,19 @@ const StudentModal = (props) => {
             />
           </CCol>
         </CRow>
+        <CAccordion className='mt-2 mb-2'>
+          <CAccordionItem>
+            <CAccordionHeader onClick={() => performPrediction(testData) }>Regresion Personalizada</CAccordionHeader>
+            <CAccordionBody className=''>  
+              <CRow className='justify-content-center'> 
+                {isLoading 
+                ? <CSpinner color="info" className='align-self-center' />
+                : <Regression3DPlot title="Problemas Resueltos para el proximo Contest" data={regressionData} />
+                }
+              </CRow>
+            </CAccordionBody>
+          </CAccordionItem>
+        </CAccordion>
         <CRow className="justify-content-end">
           <CCol md={{span: 3,offset: 8 }} >
             <CButton color={mode === "Create" ? "success" : "primary"} type="submit">
