@@ -15,6 +15,8 @@ const TablaClases = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [slectedMode, setSelectedMode] = useState(null);
 
+  const [selectedRowId, setSelectedRowId] = React.useState(null);
+
   //CRUD Clase
   let props={
     row: selectedRow,
@@ -31,15 +33,15 @@ const TablaClases = () => {
 
   const handleAddButton = () => {
     setSelectedRow({
+      class_id: null,
       name: '',
-      admin: '', id: null ,
+      admin: '',
       dia: '', hora: '',
       subtemas: []
     });
     setSelectedMode("Create");
     setIsOpen(!isOpen)
   };
-  
 
 
   return (
@@ -49,6 +51,7 @@ const TablaClases = () => {
         columns={columns}
         pageSize={5}
         onCellClick={handleCellClick}
+        getRowId={(row) => row.class_id} // Especifica que el identificador es class_id
       />
       <div className="d-flex justify-content-end mt-3">
        <CButton color="primary" onClick={handleAddButton}> + Agregar Clase</CButton> 

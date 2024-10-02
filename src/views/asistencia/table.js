@@ -12,7 +12,7 @@ import {
   CButton,
 } from '@coreui/react'
 
-import StudentModal from './AsistenciasModal'
+import AsistenciasModal from './AsistenciasModal'
 
 // Función para obtener el nombre de la clase desde su ID
 const getClassName = (classId) => {
@@ -104,7 +104,7 @@ const TablaAsistencias = () => {
       <CButton color="primary" onClick={handleAddButton}> + Tomar Asistencia</CButton>
       </div>    
 
-      {isOpen && <StudentModal onClose={props.onClose} student={props.student} />}
+      {isOpen && <AsistenciasModal onClose={props.onClose} student={props.student} />}
     </Container>
   );
 };

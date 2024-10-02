@@ -8,8 +8,9 @@ export const columns = [
 ];
 
 export const clases = [
-  { class_id: 1,
-    name: 'Topicos Iniciales', admin: 'Juan Pérez', id: 23,
+  { 
+    class_id: 1,
+    name: 'Topicos Iniciales', admin: 'Juan Alvarado',
     dia: '2024-03-23', hora: '18:00',
     subtemas: [
       'Programacion Competitiva',
@@ -18,8 +19,9 @@ export const clases = [
       'Jueces en linea'
     ]
   },
-  { class_id: 2,
-    name: 'STL, Ordenamiento, Greedy', admin: 'María López', id: 30 ,
+  { 
+    class_id: 2,
+    name: 'STL, Ordenamiento, Greedy', admin: 'María Gonzalez',
     dia: '2024-03-23', hora: '14:00',
     subtemas: [
       'Complejidad',
@@ -27,8 +29,9 @@ export const clases = [
       'Estrategias para estudiar',
     ]
   },
-  { class_id: 3,
-    name: 'Strings I', admin: 'María López', id: 22 , 
+  { 
+    class_id: 3,
+    name: 'Strings I', admin: 'Elena Morales',
     dia: '2024-03-23', hora: '13:00',
     subtemas: [
       'Strings',
@@ -37,8 +40,9 @@ export const clases = [
       'Sistemas numericos'
     ]
   },
-  { class_id: 4,
-    name: 'Busqueda Binaria', admin: 'Carlos Sánchez', id: 12 ,
+  { 
+    class_id: 4,
+    name: 'Busqueda Binaria', admin: 'Ana Torres',
     dia: '2024-03-23', hora: '14:00',
     subtemas: [
       'Busqueda sobre arreglos',
@@ -46,8 +50,9 @@ export const clases = [
       'Fraccionaria'
     ]
   },
-  { class_id: 5,
-    name: 'Grafos I', admin: 'Ana Gómez', id: 11 ,
+  { 
+    class_id: 5,
+    name: 'Grafos I', admin: 'Carlos Perez',
     dia: '2024-03-23', hora: '15:00',
     subtemas: [
       'Definicion de grafos',
@@ -56,8 +61,9 @@ export const clases = [
       'Topological'
     ]
   },
-  { class_id: 6,
-    name: 'Programacion Dinamica I', admin: 'Juan Pérez', id: 23, 
+  { 
+    class_id: 6,
+    name: 'Programacion Dinamica I', admin: 'Juan Alvarado', 
     dia: '2024-03-23', hora: '19:00',
     subtemas: [
       'Monedas',
@@ -66,8 +72,9 @@ export const clases = [
       'Knapsack'
     ]
   },
-  { class_id: 7,
-    name: 'Algoritmos Miscelaneos II', admin: 'María López', id: 23, 
+  { 
+    class_id: 7,
+    name: 'Algoritmos Miscelaneos II', admin: 'María López',
     dia: '2024-03-23', hora: '18:30',
     subtemas: [
       'Sumatorias',
@@ -76,8 +83,9 @@ export const clases = [
       'Bases numericas'
     ]
   },
-  { class_id: 8,
-    name: 'Teoria de numeros I', admin: 'Carlos Sánchez', id: 15 , 
+  { 
+    class_id: 8,
+    name: 'Teoria de numeros I', admin: 'Carlos Sánchez',
     dia: '2024-03-23', hora: '12:00',
     subtemas: [
       'Criterios de visibilidad',
@@ -86,8 +94,9 @@ export const clases = [
       'Criba'
     ]
   },
-  { class_id: 9,
-    name: 'Combinatoria I', admin: 'Ana Gómez', id: 14 , 
+  { 
+    class_id: 9,
+    name: 'Combinatoria I', admin: 'Maria Gonzalez', 
     dia: '2024-03-23', hora: '13:30',
     subtemas: [
       'Conteos',
@@ -95,8 +104,9 @@ export const clases = [
       'Factoriales'
     ]
   },
-  { class_id: 10,
-    name: 'Grafos II', admin: 'Juan Pérez', id: 25 , 
+  { 
+    class_id: 10,
+    name: 'Grafos II', admin: 'Juan Pérez',
     dia: '2024-03-23', hora: '14:30',
     subtemas: [
       'Graficos implicitos',
@@ -104,8 +114,9 @@ export const clases = [
       'Dijkstra'
     ]
   },
-  { class_id: 11,
-    name: 'Teoria de numeros y Combinatoria II', admin: 'María López', id: 11 , 
+  { 
+    class_id: 11,
+    name: 'Teoria de numeros y Combinatoria II', admin: 'María López', 
     dia: '2024-03-23', hora: '18:30',
     subtemas: [
       'GCD',
