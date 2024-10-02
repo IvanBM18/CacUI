@@ -3,6 +3,7 @@ export default class RegressionData {
     this.avgDifficulty = avgDifficulty;
     this.avgCorrect = avgCorrect;
     this.correctSubmissions = correctSubmissions;
+    this.newContest = newContest;
     this.result = null;
   }
 

@@ -1,6 +1,6 @@
 import customAPI from '../api.js';
 
-const API_URL = import.meta.env.VITE_LOCAL_API_URL + "/api/v1/student";
+const API_URL = import.meta.env.VITE_API_URL + "/api/v1/student";
 
 export default class StudentService {
     constructor() {}

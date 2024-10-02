@@ -4,7 +4,7 @@ export default class RegressionUtils{
     constructor() {
     }
     
-    static mapContestsToRegressionData(contests){
+    static getAvgsFromContests(contests){
         if(contests.length <= 5){
             return [];
         }
@@ -35,7 +35,8 @@ export default class RegressionUtils{
         return new RegressionData(
             avgDifficulty,
             avgCorrect,
-            correctSubmissions,null
+            correctSubmissions,
+            [totalDifficulty/contestCount, correctCount/contestCount]
         );
     }
 }

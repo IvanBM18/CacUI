@@ -23,6 +23,7 @@ import Regression3DPlot from '../../components/graphics/Regression3DPlot';
 import { useState } from 'react';
 import RegressionUtils from '../../services/ai/RegressionUtils';
 import RegressionData from '../../services/ai/models/regressionData';
+import ContestService from '../../services/contest/contestService';
 
 const StudentModal = (props) => {
   const [isFormInvalid, setInvalidated] = useState(false);
@@ -52,10 +53,25 @@ const StudentModal = (props) => {
 
   const performPrediction = async () => {
     setLoading(true);
-    const reggresionData = RegressionUtils.mapContestsToRegressionData(testData);
-    reggresionData.setResult(await getPrediction(testData));
-    setRegressionData(reggresionData);
-    setLoading(false);
+    let resultForEachContest = await ContestService.getStudentSubmissions(student);
+    if(!resultForEachContest || resultForEachContest.size <= 5){
+      console.warn("Something happened retrieving students results")
+      return;  
+    }
+    try{
+      let summarizedContests = [...resultForEachContest.values()];
+
+      let plotInput = RegressionUtils.getAvgsFromContests(summarizedContests);
+      let prediction = await getPrediction(plotInput);
+      
+      plotInput.setResult(prediction);
+      setRegressionData(plotInput);
+      setLoading(false);
+
+    }catch(e){
+      console.error("Error In Prediction: ", e);
+    }
+
   }
   
 
