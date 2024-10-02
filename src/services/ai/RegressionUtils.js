@@ -39,4 +39,12 @@ export default class RegressionUtils{
             [totalDifficulty/contestCount, correctCount/contestCount]
         );
     }
+
+    static isObjectFieldsFilled(obj) {
+        return Object.values(obj).every(value => value !== undefined && value !== null);
+    }
+
+    static isStudentReadyForRegression(data) {
+        return this.isObjectFieldsFilled(data) && data.avgDifficulty.length >= 10 && data.avgCorrect.length >= 10 && data.correctSubmissions.length >= 10;
+    }
 }

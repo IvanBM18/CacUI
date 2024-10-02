@@ -167,7 +167,7 @@ const Dashboard = () => {
   return (
     <>
     <CButton color="primary" onClick={() => setIsOpenStudent(!isOpenStudent)}>Launch demo STUDENT</CButton>
-    {isOpenStudent && <StudentModal onClose={props.onClose} student={testStudent} />}
+    {isOpenStudent && <StudentModal onClose={props.onClose} student={testStudent} mode={props.mode}/>}
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
