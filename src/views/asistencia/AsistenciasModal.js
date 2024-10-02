@@ -15,25 +15,7 @@ import { clases } from '../courses/data';
 import { useState } from 'react';
 
 const AsistenciasModal = (props) => {
-  // const [isFormInvalid, setInvalidated] = useState(false);
-  // const [student, setStudent] = useState(props.student);
 
-  // let mode = props.mode;
-  // let title = mode === "Create" ? "Agregar Estudiante" : student.firstName + " " + student.lastName;
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   console.log(student);
-  //   if(!event.currentTarget.checkValidity()){
-  //     console.log("Form not valid");
-  //     setInvalidated(true);
-  //     return;
-  //   }
-  //   console.log("Form submitted");
-  //   setInvalidated(false);
-  // }
-  
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedClassId, setSelectedClassId] = useState('');
   const [selectedSchedule, setSelectedSchedule] = useState('');

@@ -13,9 +13,13 @@ import { CForm,
 
 import { useState } from 'react';
 
-const StudentModal = (props) => {
+
+const PerfilModal = (props) => {
   const [isFormInvalid, setInvalidated] = useState(false);
   const [student, setStudent] = useState(props.student);
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isPasswordChanged, setIsPasswordChanged] = useState(false);
 
   let mode = props.mode;
   let title = mode === "Create" ? "Agregar Estudiante" : student.firstName + " " + student.lastName;
@@ -32,12 +36,17 @@ const StudentModal = (props) => {
     console.log("Form submitted");
     setInvalidated(false);
   }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setIsPasswordChanged(true); // Cambia el estado si se cambia la contraseña
+  };
   
 
 
   return (
     <DefaultModal
-      title={student.firstName + " " + student.lastName}
+      title={student.user}
       onClose={props.onClose}>
         <CForm
           className="row g-3 needs-validation"
@@ -49,21 +58,11 @@ const StudentModal = (props) => {
             <CCol>
               <CFormInput
                 type="text"
-                defaultValue={student.firstName ?? ""}
+                defaultValue={student.user ?? ""}
                 id="StudentInputFirstName"
-                label="Nombre"
+                label="Usuario"
                 required
                 onChange={(e) => setStudent({...student, firstName: e.target.value})}
-              />
-            </CCol>
-            <CCol>
-              <CFormInput
-                type="text"
-                defaultValue={student.lastName ?? ""}
-                id="StudentInputLastName"
-                label="Apellido(s)"
-                onChange={(e) => setStudent({...student, lastName: e.target.value})}
-                required
               />
             </CCol>
           </CRow>
@@ -74,50 +73,30 @@ const StudentModal = (props) => {
               id='StudentInputEmail'
               defaultValue={student.email ?? ""}
               placeholder="Correo Institucional" 
-              onChange={(e) => setStudent({...student, email: e.target.value + "@alumnos.udg.mx"})}
+              onChange={(e) => setStudent({...student, correo: e.target.value + "@alumnos.udg.mx"})}
               />
             <CInputGroupText>@alumnos.udg.mx</CInputGroupText>
           </CInputGroup>
         </CRow>
-        <CRow className="mt-2 mb-2">
-          <CCol xs={7}> 
-            <CFormInput
-              type="text"
-              defaultValue={student.code ?? ""}
-              id="StudentInputCode"
-              label="Codigo"
-              placeholder="XXXXXXXXX" 
-              required
-              onChange={(e) => setStudent({...student, code: e.target.value})}
-            />
-          </CCol>
-          <CCol xs={5}> 
-            <CFormSelect
-              defaultValue={student.code ?? ""}
-              id="StudentInputCode"
-              label="Codigo"
-              placeholder="XXXXXXXXX" 
-              required
-              value={student.group?? "Seleciona..."}
-              onChange={(e) => setStudent({...student, group: e.target.value})}
-              
-            >
-              <option value="">Selecciona...</option>
-              <option value="Basicos">Basicos</option>
-              <option value="Intermedios">Intermedios</option>
-            </CFormSelect>
-          </CCol>
-        </CRow>
+      
         <CRow className="mt-2 mb-2">
           <CCol >
             <CFormInput
-              type="date"
-              defaultValue={student.register_date ?? ""}
-              id="StudentInputRegisterDate"
-              label="Fecha de Registro"
+              type="text"
+              defaultvalue={student.password ?? ""}
+              id="Password"
+              label="Password"
               required
-              onChange={(e) => setStudent({...student, register_date: e.target.value})}
+              onChange={handlePasswordChange}
             />
+            {isPasswordChanged && (
+          <CFormInput
+            type="password"
+            label="Confirmar Contraseña"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        )}
           </CCol>
         </CRow>
         <CRow className="justify-content-end">
@@ -132,4 +111,4 @@ const StudentModal = (props) => {
   )
 }
 
-export default StudentModal;
+export default PerfilModal;

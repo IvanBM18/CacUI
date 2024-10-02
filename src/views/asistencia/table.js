@@ -101,7 +101,7 @@ const TablaAsistencias = () => {
         rowsPerPageOptions={[5]}
       />
       <div className="d-flex justify-content-end mt-3">
-      <CButton color="primary" onClick={handleAddButton}> + Agregar Alumno</CButton>
+      <CButton color="primary" onClick={handleAddButton}> + Tomar Asistencia</CButton>
       </div>    
 
       {isOpen && <StudentModal onClose={props.onClose} student={props.student} />}
