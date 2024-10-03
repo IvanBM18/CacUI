@@ -4,7 +4,7 @@ export const DefaultModal = (props) => {
 
   return(
     <>
-      <CModal visible={true} onClose={props.onClose} >
+      <CModal visible={true} onClose={props.onClose} size={props.size?? "xs" } >
         <CModalHeader>
           <CModalTitle>{props.title?? "Modal Title"}</CModalTitle>
         </CModalHeader>
