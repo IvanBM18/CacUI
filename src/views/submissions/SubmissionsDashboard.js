@@ -1,6 +1,6 @@
 import SubmissionsTable from "./SubmissionsTable";
 
-const SubmissionsView = () => {
+const SubmissionsDashBoard = () => {
   return (
     <>
       <div>
@@ -11,5 +11,5 @@ const SubmissionsView = () => {
   );
 }
 
-export default SubmissionsView;
+export default SubmissionsDashBoard;
 
