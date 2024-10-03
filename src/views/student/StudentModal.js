@@ -14,7 +14,8 @@ import { CForm,
   CAccordionHeader,
   CAccordionBody,
   CSpinner,
-  CAccordionButton
+  CAccordionButton,
+  CCallout
 } from '@coreui/react';
 
 import { testData } from '../../services/ai/constants';
@@ -23,14 +24,19 @@ import Regression3DPlot from '../../components/graphics/Regression3DPlot';
 import { useState } from 'react';
 import RegressionUtils from '../../services/ai/RegressionUtils';
 import RegressionData from '../../services/ai/models/regressionData';
+import ContestService from '../../services/contest/contestService';
 
 const StudentModal = (props) => {
+  
   const [isFormInvalid, setInvalidated] = useState(false);
-  const [isLoading, setLoading] = useState(true);
   const [student, setStudent] = useState(props.student);
-  const [regressionData, setRegressionData] = useState(new RegressionData());
 
+  const [isLoading, setLoading] = useState(true);
+  const [regressionData, setRegressionData] = useState(new RegressionData());
+  
+  let reggresionEnabled = RegressionUtils.isStudentReadyForRegression(regressionData);
   let mode = props.mode;
+  let isPredicitionEnabled = mode !== "Create";
   let title = mode === "Create" ? "Agregar Estudiante" : student.firstName + " " + student.lastName;
 
   async function getPrediction(data) {
@@ -52,10 +58,36 @@ const StudentModal = (props) => {
 
   const performPrediction = async () => {
     setLoading(true);
-    const reggresionData = RegressionUtils.mapContestsToRegressionData(testData);
-    reggresionData.setResult(await getPrediction(testData));
-    setRegressionData(reggresionData);
-    setLoading(false);
+    let resultForEachContest = await ContestService.getStudentSubmissions(student);
+    if(!resultForEachContest || resultForEachContest.size <= 5){
+      console.warn("Something happened retrieving students results")
+      return;  
+    }
+    try{
+      let summarizedContests = [...resultForEachContest.values()];
+
+      let plotInput = RegressionUtils.getAvgsFromContests(summarizedContests);
+      let prediction = await getPrediction(plotInput);
+      
+      plotInput.setResult(prediction);
+      setRegressionData(plotInput);
+      setLoading(false);
+
+    }catch(e){
+      console.error("Error In Prediction: ", e);
+      isLoading(true);
+    }
+
+  }
+
+  const cleanEmail = (email) => {
+    if(!email){
+      return "";
+    }
+    if(email.includes("@alumnos.udg.mx")){
+      return email.replace("@alumnos.udg.mx", "");
+    }
+    return email;
   }
   
 
@@ -98,7 +130,7 @@ const StudentModal = (props) => {
           <CInputGroup className="" >
             <CFormInput 
               id='StudentInputEmail'
-              defaultValue={student.email ?? ""}
+              defaultValue={cleanEmail(student.email)}
               placeholder="Correo Institucional" 
               onChange={(e) => setStudent({...student, email: e.target.value + "@alumnos.udg.mx"})}
               />
@@ -143,23 +175,27 @@ const StudentModal = (props) => {
             />
           </CCol>
         </CRow>
-        <CAccordion className='mt-2 mb-2'>
+        {isPredicitionEnabled &&
+          <CAccordion className='mt-2 mb-2'>
           <CAccordionItem>
-            <CAccordionHeader onClick={() => performPrediction(testData) }>Regresion Personalizada</CAccordionHeader>
+            <CAccordionHeader onClick={() => performPrediction(testData) }>Predecir desempeño</CAccordionHeader>
             <CAccordionBody className=''>  
               <CRow className='justify-content-center'> 
                 {isLoading 
                 ? <CSpinner color="info" className='align-self-center' />
-                : <Regression3DPlot title="Problemas Resueltos para el proximo Contest" data={regressionData} />
+                : reggresionEnabled ? <Regression3DPlot title="Prediccion de problemas resueltos en el proximo contest" data={regressionData} />
+                  : <CCallout color='info'>El estudiante debe haber participado en almenos 10 concursos para poder predecir su desempeño</CCallout>
                 }
               </CRow>
             </CAccordionBody>
           </CAccordionItem>
         </CAccordion>
+        }
+        
         <CRow className="justify-content-end">
           <CCol md={{span: 3,offset: 8 }} >
             <CButton color={mode === "Create" ? "success" : "primary"} type="submit">
-              {mode === "Create" ? "Agregar" : "Modificar"}
+              {mode === "Create" ? "Agregar" : "Actualizar"}
             </CButton>
           </CCol>
         </CRow>

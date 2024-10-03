@@ -14,7 +14,7 @@ const Regression3DPlot = (props) => {
       mode: 'markers',
       type: 'scatter3d',
       marker: { color: 'blue', size: 6 },
-      name: 'Datos Originales',
+      name: 'Datos Reales',
     },
     {
       x: [prediccion.x],
@@ -40,20 +40,28 @@ const Regression3DPlot = (props) => {
   const layout = {
     title: props.title ?? "Regresion Lineal Mutivariable",
     scene: {
-      xaxis: { title: 'Avg Difficulty' },
-      yaxis: { title: 'Avg Correct Answer' },
-      zaxis: { title: 'Correct Answers' },
+      xaxis: { title: 'Dificultad' },
+      yaxis: { title: 'Historial Resueltos' },
+      zaxis: { title: 'Problemas Resueltos' },
     },
   }
 
+  function isObjectFieldsFilled(obj) {
+    return Object.values(obj).every(value => value !== undefined && value !== null);
+}
+
+  const areAllDataValid = isObjectFieldsFilled && data.avgDifficulty.length > 0 && data.avgCorrect.length > 0 && data.correctSubmissions.length > 0;
+
   return (
     <div >
-      <Plot
-        style={{ width: '100%', height: '450px' }}
+      {areAllDataValid 
+      ? <Plot
+        style={{ width: '100%', height: '500px' }}
         data={plotData}
         layout={layout}
         config={{ responsive: true }}
-      />
+        />
+      : <h3>Datos Invalidos</h3>}
     </div>
   );
 };

@@ -4,7 +4,7 @@ export default class RegressionUtils{
     constructor() {
     }
     
-    static mapContestsToRegressionData(contests){
+    static getAvgsFromContests(contests){
         if(contests.length <= 5){
             return [];
         }
@@ -35,7 +35,16 @@ export default class RegressionUtils{
         return new RegressionData(
             avgDifficulty,
             avgCorrect,
-            correctSubmissions,null
+            correctSubmissions,
+            [totalDifficulty/contestCount, correctCount/contestCount]
         );
+    }
+
+    static isObjectFieldsFilled(obj) {
+        return Object.values(obj).every(value => value !== undefined && value !== null);
+    }
+
+    static isStudentReadyForRegression(data) {
+        return this.isObjectFieldsFilled(data) && data.avgDifficulty.length >= 10 && data.avgCorrect.length >= 10 && data.correctSubmissions.length >= 10;
     }
 }
