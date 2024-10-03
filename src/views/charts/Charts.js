@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
 import {
   CChartBar,
@@ -9,9 +9,26 @@ import {
   CChartRadar,
 } from '@coreui/react-chartjs'
 import { DocsCallout } from 'src/components'
+import StatsService from '../../services/stats/StatsService'
 
 const Charts = () => {
   const random = () => Math.round(Math.random() * 100)
+  const [stats, setStats] = React.useState({})
+
+  let totalAvanzados = 0;
+
+  async function fetchStats(){
+    let totalAlumnos = await StatsService.getGeneralStats("totalAlumnos");
+    let totalBasicos = await StatsService.getGeneralStats("totalBasicos");
+    let totalIntermedios = await StatsService.getGeneralStats("totalIntermedios");
+    setStats({totalAlumnos, totalBasicos, totalIntermedios})
+  }
+
+
+  useEffect(() => {
+    fetchStats()
+  }, [])
+
   return (
     <CRow>
       <CCol xs={12}>
@@ -81,6 +98,25 @@ const Charts = () => {
                 datasets: [
                   {
                     data: [300, 50, 100],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                    hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                  },
+                ],
+              }}
+            />
+          </CCardBody>
+        </CCard>
+      </CCol>
+      <CCol xs={6}>
+        <CCard className="mb-4">
+          <CCardHeader>Porcentaje de Alumnos Por Grupo</CCardHeader>
+          <CCardBody>
+            <CChartPie
+              data={{
+                labels: ['Basicos', 'Intermedios', 'Avanzados'],
+                datasets: [
+                  {
+                    data: [stats.totalBasicos, stats.totalIntermedios, totalAvanzados],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
                     hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
                   },
