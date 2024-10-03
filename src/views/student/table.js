@@ -7,7 +7,7 @@ import { Container } from '@mui/material'
 import {
   CButton,
 } from '@coreui/react'
-import StudentModal from './StudentModal'
+import StudentModal from './StudentModal1'
 
 const TablaAlumnos = () => {
 

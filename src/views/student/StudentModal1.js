@@ -109,50 +109,28 @@ const StudentModal = (props) => {
           <CCol xs={7}> 
             <CFormInput
               type="text"
-<<<<<<< HEAD
               defaultValue={student.id ?? ""}
               id="StudentInputCode"
               label="Codigo"
               placeholder="XXXXXXXXX" 
               required
               onChange={(e) => setStudent({...student, id: e.target.value})}
-=======
-              defaultValue={student.siiauCode ?? ""}
-              id="StudentInputSiiauCode"
-              label="Codigo"
-              placeholder="XXXXXXXXX" 
-              required
-              onChange={(e) => setStudent({...student, siiauCode: e.target.value})}
->>>>>>> 947781abb2704acb540bbddba9d9cab405f6c94b
             />
           </CCol>
           <CCol xs={5}> 
             <CFormSelect
-<<<<<<< HEAD
               defaultValue={student.id ?? ""}
               id="StudentInputCode"
               label="Grupo"
               placeholder="XXXXXXXXX" 
               required
               value={student.group?? ""}
-=======
-              id="StudentInputGroup"
-              label="Grupo"
-              placeholder="Selecciona..." 
-              required
-              value={student.group? "Seleciona..." : student.group}
->>>>>>> 947781abb2704acb540bbddba9d9cab405f6c94b
               onChange={(e) => setStudent({...student, group: e.target.value})}
             >
-<<<<<<< HEAD
               <option value="">Selecciona...</option>
               <option value='Basico'>Basicos</option>
               <option value='Intermedio'>Intermedios</option>
               <option value='Avanzado'>Avanzados</option>
-=======
-              <option value="Basicos">Basicos</option>
-              <option value="Intermedios">Intermedios</option>
->>>>>>> 947781abb2704acb540bbddba9d9cab405f6c94b
             </CFormSelect>
           </CCol>
         </CRow>

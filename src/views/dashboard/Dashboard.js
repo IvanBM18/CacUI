@@ -148,7 +148,6 @@ const Dashboard = () => {
   ]
 
 
-  
   //TODO: Eliminar esto
   let props={
     onClose: () => setIsOpenStudent(!isOpenStudent),
