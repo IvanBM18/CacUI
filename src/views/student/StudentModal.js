@@ -53,14 +53,16 @@ const StudentModal = (props) => {
       setInvalidated(true);
       return;
     }
+    props.onClose(student);
     setInvalidated(false);
   }
 
   const performPrediction = async () => {
     setLoading(true);
     let resultForEachContest = await ContestService.getStudentSubmissions(student);
-    if(!resultForEachContest || resultForEachContest.size <= 5){
+    if(!resultForEachContest || resultForEachContest.length <= 5 ){
       console.warn("Something happened retrieving students results")
+      setLoading(false);
       return;  
     }
     try{
@@ -75,7 +77,7 @@ const StudentModal = (props) => {
 
     }catch(e){
       console.error("Error In Prediction: ", e);
-      isLoading(true);
+      isLoading(false);
     }
 
   }
@@ -160,6 +162,7 @@ const StudentModal = (props) => {
             >
               <option value="Basicos">Basicos</option>
               <option value="Intermedios">Intermedios</option>
+              <option value='Avanzado'>Avanzados</option>
             </CFormSelect>
           </CCol>
         </CRow>
