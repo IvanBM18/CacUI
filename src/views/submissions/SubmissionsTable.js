@@ -1,25 +1,22 @@
+import React from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import { Container } from "@mui/material";
+import { columns } from "./constants";
 
-
-const SubmissionsTable = ({ submissions }) => {
+const SubmissionsTable = (props) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Submission ID</th>
-          <th>Submission Date</th>
-          <th>Submission Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {submissions.map((submission) => (
-          <tr key={submission.id}>
-            <td>{submission.id}</td>
-            <td>{submission.date}</td>
-            <td>{submission.status}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <>
+      <Container style={{ height: 600, width: '100%' }}>
+        <DataGrid
+          rows={props.submissions}
+          columns={columns}
+          pageSize={10}
+          rowsPerPageOptions={[10]}
+          checkboxSelection
+          disableSelectionOnClick
+        />
+      </Container>
+    </>
   );
 };
 

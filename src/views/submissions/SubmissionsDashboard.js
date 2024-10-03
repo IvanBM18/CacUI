@@ -1,4 +1,5 @@
 import SubmissionsTable from "./SubmissionsTable";
+import { mockData } from "./constants";
 
 const SubmissionsDashBoard = () => {
   return (
@@ -6,7 +7,7 @@ const SubmissionsDashBoard = () => {
       <div>
         <h1>Submissions</h1>
       </div>
-      <SubmissionsTable submissions={[]} />
+      <SubmissionsTable submissions={mockData} />
     </>
   );
 }
