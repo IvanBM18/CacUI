@@ -13,7 +13,13 @@ const initStudent = {
   firstName: "",
   lastName: "",
   code: "",
-  refister_date: "",
+  registerDate: "",
+  email: "",
+  group: "",
+  codeProfiles: {
+    codeForces: "",
+    vjudge: "",
+  }
 }
 
 const TablaAlumnos = () => {
@@ -73,7 +79,7 @@ const TablaAlumnos = () => {
        <CButton color="primary" onClick={handleAddButton}> + Agregar Alumno</CButton> 
       </div>
 
-      {isOpen && <StudentModal onClose={props.onClose} student={props.student} />}
+      {isOpen && <StudentModal mode={selectedMode} onClose={props.onClose} student={props.student} />}
     
     </Container>
   );

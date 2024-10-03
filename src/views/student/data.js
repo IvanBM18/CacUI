@@ -65,7 +65,11 @@ export const students = [
     registerDate: '2023-04-10',
     siiauCode: '219747662',
     email: 'ivan.barba7476@alumnos.udg.mx',
-    group: 'Intermedio'
+    group: 'Intermedio',
+    codeProfiles: {
+      codeForces: 'ivanBM',
+      vJudge: 'ivanBM18',
+    }
   },
   {
     photo: avatar2,
