@@ -231,11 +231,9 @@ const StudentModal = (props) => {
 
         
         <CRow className="justify-content-end">
-          <CCol md={{span: 3,offset: 8 }} >
-            <CButton color={mode === "Create" ? "success" : "primary"} type="submit">
-              {mode === "Create" ? "Agregar" : "Actualizar"}
-            </CButton>
-          </CCol>
+          <CButton color={mode === "Create" ? "success" : "primary"} type="submit">
+            {mode === "Create" ? "Agregar" : "Actualizar"}
+          </CButton>
         </CRow>
         </CForm>
     </DefaultModal>

@@ -1,10 +1,10 @@
 
 
 export const columns = [
-  { field: 'name', headerName: 'Curso', width: 300 },
-  { field: 'admin', headerName: 'Instructor', width: 250 },
-  { field: 'dia', headerName: 'Dia', width: 150 },
-  { field: 'hora', headerName: 'Hora', width: 120 },
+  { field: 'name', headerName: 'Curso', flex: 3 },
+  { field: 'admin', headerName: 'Instructor', flex: 2 },
+  { field: 'dia', headerName: 'Dia', flex: 1 },
+  { field: 'hora', headerName: 'Hora', flex: 1 },
 ];
 
 export const clases = [
