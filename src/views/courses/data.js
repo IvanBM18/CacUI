@@ -9,7 +9,18 @@ export const columns = [
 
 export const clases = [
   { 
-    class_id: 1,
+    class_id: 0,
+    name: 'Strings I', admin: 'Elena Morales',
+    dia: '2024-03-23', hora: '13:00',
+    subtemas: [
+      'Strings',
+      'Big num',
+      'Manejo de caracteres',
+      'Sistemas numericos'
+    ]
+  },
+  { 
+    class_id: 3,
     name: 'Topicos Iniciales', admin: 'Juan Alvarado',
     dia: '2024-03-23', hora: '18:00',
     subtemas: [
@@ -27,17 +38,6 @@ export const clases = [
       'Complejidad',
       'Ejemplos de problemas',
       'Estrategias para estudiar',
-    ]
-  },
-  { 
-    class_id: 3,
-    name: 'Strings I', admin: 'Elena Morales',
-    dia: '2024-03-23', hora: '13:00',
-    subtemas: [
-      'Strings',
-      'Big num',
-      'Manejo de caracteres',
-      'Sistemas numericos'
     ]
   },
   { 

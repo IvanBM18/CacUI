@@ -11,6 +11,7 @@ const Perfil = React.lazy(() => import('./views/perfil/Perfil'))
 
 
 // Pages
+const QrAssists = React.lazy(() => import('./views/pages/qrAssists/qrAssists'))
 const Login = React.lazy(() => import('./views/pages/login/Login'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
@@ -44,6 +45,7 @@ const App = () => {
         }
       >
         <Routes>
+          <Route path="/qr/:id" name = "Asistencia por QR" element={<QrAssists />} />
           <Route exact path="/login" name="Login Page" element={<Login />} />
           <Route exact path="/register" name="Register Page" element={<Register />} />
           <Route exact path="/404" name="Page 404" element={<Page404 />} />
