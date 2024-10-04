@@ -53,14 +53,16 @@ const StudentModal = (props) => {
       setInvalidated(true);
       return;
     }
+    props.onClose(student);
     setInvalidated(false);
   }
 
   const performPrediction = async () => {
     setLoading(true);
     let resultForEachContest = await ContestService.getStudentSubmissions(student);
-    if(!resultForEachContest || resultForEachContest.size <= 5){
+    if(!resultForEachContest || resultForEachContest.length <= 5 ){
       console.warn("Something happened retrieving students results")
+      setLoading(false);
       return;  
     }
     try{
@@ -75,7 +77,7 @@ const StudentModal = (props) => {
 
     }catch(e){
       console.error("Error In Prediction: ", e);
-      isLoading(true);
+      isLoading(false);
     }
 
   }
@@ -160,6 +162,7 @@ const StudentModal = (props) => {
             >
               <option value="Basicos">Basicos</option>
               <option value="Intermedios">Intermedios</option>
+              <option value='Avanzado'>Avanzados</option>
             </CFormSelect>
           </CCol>
         </CRow>
@@ -175,6 +178,33 @@ const StudentModal = (props) => {
             />
           </CCol>
         </CRow>
+        {student.codeProfiles && 
+        <CRow className="mt-2 mb-2">
+          {(student.codeProfiles.codeForces || mode === 'Create')&& 
+            <CCol>
+              <CFormInput
+              type="text"
+              defaultValue={student.codeProfiles.codeForces ?? ""}
+              id="StudentInputCodeForces"
+              label="CodeForces"
+              placeholder="" 
+              required
+              onChange={(e) => setStudent({...student, codeProfiles: {...student.codeProfiles, codeForces: e.target.value}} )}
+            />
+            </CCol>}
+            {(student.codeProfiles.vJudge || mode === 'Create')&& 
+            <CCol>
+              <CFormInput
+              type="text"
+              defaultValue={student.codeProfiles.vJudge ?? ""}
+              id="StudentInputVJudge"
+              label="VJudge"
+              placeholder="" 
+              required
+              onChange={(e) => setStudent({...student, codeProfiles: {...student.codeProfiles, vJudge: e.target.value}} )}
+            />
+            </CCol>}
+        </CRow>}
         {isPredicitionEnabled &&
           <CAccordion className='mt-2 mb-2'>
           <CAccordionItem>

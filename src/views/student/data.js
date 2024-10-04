@@ -39,7 +39,7 @@ export const columns = [
   { field: 'id', headerName: 'Codigo', width: 120 },
   { field: 'firstName', headerName: 'Nombre', width: 180 },
   { field: 'lastName', headerName: 'Apellido', width: 180 },
-  { field: 'correo', headerName: 'Correo', width: 290 },
+  { field: 'email', headerName: 'Correo', width: 290 },
   { field: 'group', headerName: 'Grupo', width: 200, 
     renderCell: (params) => (
       <div style={{ textAlign: 'center', width: '100%' }}>
@@ -57,20 +57,27 @@ export const columns = [
 export const students = [
  {
     photo: avatar3,
-    firstName: 'Fernando',
-    lastName: 'Jiménez',
-    id: '219747670',
-    register_date: '2023-04-10',
-    correo: 'fernando.jimenez@alumnos.udg.mx',
-    group: 'Basico'
+    firstName: 'Ivan',
+    lastName: 'Barba macias',
+    student_id: '0',
+    id: '219747662',
+    registerDate: '2023-04-10',
+    siiauCode: '219747662',
+    email: 'ivan.barba7476@alumnos.udg.mx',
+    group: 'Intermedio',
+    codeProfiles: {
+      codeForces: 'ivanBM',
+      vJudge: 'ivanBM18',
+    }
   },
   {
     photo: avatar2,
     firstName: "María",
     lastName: "Hernández",
     id: "219747671",
-    register_date: "2024-05-03",
-    correo: "maria.hernandez@alumnos.udg.mx",
+    siiauCode: "219747671",
+    registerDate: "2024-05-03",
+    email: "maria.hernandez@alumnos.udg.mx",
     group: 'Basico'
   },
   {
@@ -78,8 +85,9 @@ export const students = [
     firstName: "Luis",
     lastName: "García",
     id: "219747672",
-    register_date: "2024-07-28",
-    correo: "luis.garcia@alumnos.udg.mx",
+    siiauCode: "219747672",
+    registerDate: "2024-07-28",
+    email: "luis.garcia@alumnos.udg.mx",
     group: 'Avanzado'
   },
   {
@@ -87,8 +95,9 @@ export const students = [
     firstName: "Ana",
     lastName: "Martínez",
     id: "219747673",
-    register_date: "2023-02-28",
-    correo: "ana.martinez@alumnos.udg.mx",
+    siiauCode: "219747673",
+    registerDate: "2023-02-28",
+    email: "ana.martinez@alumnos.udg.mx",
     group: 'Basico'
   },
   {
@@ -96,8 +105,9 @@ export const students = [
     firstName: "Carlos",
     lastName: "Pérez",
     id: "219747674",
-    register_date: "2023-06-13",
-    correo: "carlos.perez@alumnos.udg.mx",
+    siiauCode: "219747674",
+    registerDate: "2023-06-13",
+    email: "carlos.perez@alumnos.udg.mx",
     group: 'Intermedio'
   },
   {
@@ -105,8 +115,9 @@ export const students = [
     firstName: "Elena",
     lastName: "Torres",
     id: "219747675",
-    register_date: "2024-04-15",
-    correo: "elena.torres@alumnos.udg.mx",
+    siiauCode: "219747675",
+    registerDate: "2024-04-15",
+    email: "elena.torres@alumnos.udg.mx",
     group: 'Basico'
   },
   {
@@ -114,8 +125,9 @@ export const students = [
     firstName: "Andrés",
     lastName: "Sánchez",
     id: "219747676",
-    register_date: "2023-04-18",
-    correo: "andres.sanchez@alumnos.udg.mx",
+    siiauCode: "219747676",
+    registerDate: "2023-04-18",
+    email: "andres.sanchez@alumnos.udg.mx",
     group: 'Basico'
   },
   {
@@ -123,8 +135,9 @@ export const students = [
     firstName: "Patricia",
     lastName: "Morales",
     id: "219747677",
-    register_date: "2023-07-23",
-    correo: "patricia.morales@alumnos.udg.mx",
+    siiauCode: "219747677",
+    registerDate: "2023-07-23",
+    email: "patricia.morales@alumnos.udg.mx",
     group: 'Intermedio'
   },
   {
@@ -132,8 +145,9 @@ export const students = [
     firstName: "José",
     lastName: "González",
     id: "219747678",
-    register_date: "2023-10-13",
-    correo: "jose.gonzalez@alumnos.udg.mx",
+    siiauCode: "219747678",
+    registerDate: "2023-10-13",
+    email: "jose.gonzalez@alumnos.udg.mx",
     group: 'Basico'
   },
   {
@@ -141,8 +155,9 @@ export const students = [
     firstName: "Sofía",
     lastName: "Jiménez",
     id: "219747679",
-    register_date: "2023-05-23",
-    correo: "sofia.jimenez@alumnos.udg.mx",
+    siiauCode: "219747679",
+    registerDate: "2023-05-23",
+    email: "sofia.jimenez@alumnos.udg.mx",
     group: 'Intermedio'
   },
   {
@@ -150,8 +165,9 @@ export const students = [
     firstName: "Ricardo",
     lastName: "Ramírez",
     id: "219747680",
-    register_date: "2024-05-26",
-    correo: "ricardo.ramirez@alumnos.udg.mx",
+    siiauCode: "219747680",
+    registerDate: "2024-05-26",
+    email: "ricardo.ramirez@alumnos.udg.mx",
     group: 'Basico'
   },
   {
@@ -159,8 +175,9 @@ export const students = [
     firstName: "Lucía",
     lastName: "Vázquez",
     id: "219747681",
-    register_date: "2023-04-11",
-    correo: "lucia.vazquez@alumnos.udg.mx",
+    siiauCode: "219747681",
+    registerDate: "2023-04-11",
+    email: "lucia.vazquez@alumnos.udg.mx",
     group: 'Avanzado'
   },
   {
@@ -168,8 +185,9 @@ export const students = [
     firstName: "Javier",
     lastName: "Moreno",
     id: "219747682",
-    register_date: "2023-12-18",
-    correo: "javier.moreno@alumnos.udg.mx",
+    siiauCode: "219747682",
+    registerDate: "2023-12-18",
+    email: "javier.moreno@alumnos.udg.mx",
     group: 'Basico'
   },
   {
@@ -177,8 +195,9 @@ export const students = [
     firstName: "Valentina",
     lastName: "Cervantes",
     id: "219747683",
-    register_date: "2023-12-01",
-    correo: "valentina.cervantes@alumnos.udg.mx",
+    siiauCode: "219747683",
+    registerDate: "2023-12-01",
+    email: "valentina.cervantes@alumnos.udg.mx",
     group: 'Avanzado'
   },
   {
@@ -186,8 +205,9 @@ export const students = [
     firstName: "Sebastián",
     lastName: "Mendoza",
     id: "219747684",
-    register_date: "2023-01-20",
-    correo: "sebastian.mendoza@alumnos.udg.mx",
+    siiauCode: "219747684",
+    registerDate: "2023-01-20",
+    email: "sebastian.mendoza@alumnos.udg.mx",
     group: 'Avanzado'
   },
   {
@@ -195,8 +215,9 @@ export const students = [
     firstName: "Camila",
     lastName: "Rojas",
     id: "219747685",
-    register_date: "2024-07-15",
-    correo: "camila.rojas@alumnos.udg.mx",
+    siiauCode: "219747685",
+    registerDate: "2024-07-15",
+    email: "camila.rojas@alumnos.udg.mx",
     group: 'Basico'
   },
   {
@@ -204,8 +225,9 @@ export const students = [
     firstName: "Diego",
     lastName: "Cruz",
     id: "219747686",
-    register_date: "2023-08-08",
-    correo: "diego.cruz@alumnos.udg.mx",
+    siiauCode: "219747686",
+    registerDate: "2023-08-08",
+    email: "diego.cruz@alumnos.udg.mx",
     group: 'Intermedio'
   },
   {
@@ -213,8 +235,9 @@ export const students = [
     firstName: "Gabriela",
     lastName: "Salazar",
     id: "219747687",
-    register_date: "2024-01-07",
-    correo: "gabriela.salazar@alumnos.udg.mx",
+    siiauCode: "219747687",
+    registerDate: "2024-01-07",
+    email: "gabriela.salazar@alumnos.udg.mx",
     group: 'Basico'
   },
   {
@@ -222,8 +245,9 @@ export const students = [
     firstName: "Ángel",
     lastName: "Fuentes",
     id: "219747688",
-    register_date: "2023-01-27",
-    correo: "angel.fuentes@alumnos.udg.mx",
+    siiauCode: "219747688",
+    registerDate: "2023-01-27",
+    email: "angel.fuentes@alumnos.udg.mx",
     group: 'Avanzado'
   },
   {
@@ -231,8 +255,9 @@ export const students = [
     firstName: "Natalia",
     lastName: "Alvarado",
     id: "219747689",
-    register_date: "2024-03-17",
-    correo: "natalia.alvarado@alumnos.udg.mx",
+    siiauCode: "219747689",
+    registerDate: "2024-03-17",
+    email: "natalia.alvarado@alumnos.udg.mx",
     group: 'Intermedio'
   }
 ];
