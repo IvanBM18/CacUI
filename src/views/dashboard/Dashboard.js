@@ -50,6 +50,7 @@ import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import MainChart from './MainChart'
 import StudentModal from '../student/StudentModal'
 import StudentService from '../../services/student/StudentService'
+import TablaAlumnos from '../student/table'
 
 const Dashboard = () => {
 
@@ -165,8 +166,8 @@ const Dashboard = () => {
 
   return (
     <>
-    <CButton color="primary" onClick={() => setIsOpenStudent(!isOpenStudent)}>Launch demo STUDENT</CButton>
-    {isOpenStudent && <StudentModal onClose={props.onClose} student={testStudent} mode={props.mode}/>}
+    {/* <CButton color="primary" onClick={() => setIsOpenStudent(!isOpenStudent)}>Launch demo STUDENT</CButton>
+    {isOpenStudent && <StudentModal onClose={props.onClose} student={testStudent} mode={props.mode}/>} */}
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
@@ -181,9 +182,8 @@ const Dashboard = () => {
                 <CIcon icon={cilCloudDownload} />
               </CButton>
               <CButtonGroup className="float-end me-3">
-                {['Semanal', 'Mensual', 'Semestral'].map((value) => (
+                {['Mensual'].map((value) => (
                   <CButton
-                  onClick={() => setIsOpenStudent(true)}
                     color="outline-secondary"
                     key={value}
                     className="mx-0"
@@ -198,6 +198,7 @@ const Dashboard = () => {
           <MainChart />
         </CCardBody>
       </CCard>
+      <TablaAlumnos />
     </>
   )
 }

@@ -12,7 +12,7 @@ const TablaAlumnos = () => {
 
 
   return (
-    <Container style={{ height: 700, width: '60%' }}>
+    <Container style={{ height: 700, width: '100%' }}>
       <DataGrid
         rows={students}
         columns={columns}

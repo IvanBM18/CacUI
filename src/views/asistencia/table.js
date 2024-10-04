@@ -99,6 +99,7 @@ const TablaAsistencias = () => {
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
+        density='compact'
       />
       <div className="d-flex justify-content-end mt-3">
       <CButton color="primary" onClick={handleAddButton}> + Tomar Asistencia</CButton>

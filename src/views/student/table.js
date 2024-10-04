@@ -1,5 +1,5 @@
 import React from 'react'
-
+import avatar3 from 'src/assets/images/avatars/3.png'
 import { students, columns} from './data'
 import { useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
@@ -39,6 +39,8 @@ const TablaAlumnos = () => {
     setIsOpen(false);
     if(student){
       if(selectedMode === "Create"){
+        student.photo = avatar3,
+        student.id = tableStudents.length + 1;
         setStudents([...tableStudents, student]);
       }
       if(selectedMode === "Update"){
@@ -65,19 +67,21 @@ const TablaAlumnos = () => {
   }
 
   return (
-    <Container style={{ height: 600, width: '100%' }}>
+    <Container style={{ width: '100%' }} className='justify-content-end'>
+      <div className="d-flex justify-content-end mb-3">
+        <CButton color="primary" onClick={handleAddButton}> + Agregar Alumno</CButton> 
+      </div>
       <DataGrid
         rows={tableStudents}
         columns={columns}
         pageSize={5}
-        onCellClick={handleCellClick}
         rowsPerPageOptions={[5]}
+        autoHeight
+        onCellClick={handleCellClick}
         //checkboxSelection
         //disableSelectionOnClick
       />
-      <div className="d-flex justify-content-end mt-3">
-       <CButton color="primary" onClick={handleAddButton}> + Agregar Alumno</CButton> 
-      </div>
+      
 
       {isOpen && <StudentModal mode={selectedMode} onClose={props.onClose} student={props.student} />}
     

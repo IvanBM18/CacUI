@@ -4,15 +4,17 @@ import { Container } from "@mui/material";
 import { columns } from "./constants";
 
 const SubmissionsTable = (props) => {
+  let studentId = props.student_id;
+  console.log("Submissions: ", props.submissions);
   return (
     <>
-      <Container style={{ height: 600, width: '100%' }}>
+      <Container style={{width: '100%' }}>
         <DataGrid
+          autoHeight
           rows={props.submissions}
           columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
-          checkboxSelection
+          density="compact"
+          hideFooter
           disableSelectionOnClick
         />
       </Container>

@@ -1,8 +1,8 @@
 export const columns = [
-  { field: 'problem', headerName: 'Problema', width: 180 },
-  { field: 'verdict', headerName: 'Veredicto', width: 100 },
-  { field: 'codeProfile', headerName: 'Usuario', width: 180 },
-  { field: 'contest', headerName: 'Contest', width: 290 },
+  { field: 'problem', headerName: 'Problema', flex: 2, resizable:false},
+  { field: 'verdict', headerName: 'Veredicto', flex:1,  resizable:false },
+  { field: 'codeProfile', headerName: 'Usuario', flex:2, resizable:false },
+  { field: 'contest', headerName: 'Contest', flex:3, resizable:false },
   ];
 
   export const mockData = [
