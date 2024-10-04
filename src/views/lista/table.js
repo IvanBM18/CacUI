@@ -8,26 +8,28 @@ import {
   CButton,
 } from '@coreui/react'
 
-const TablaAlumnos = () => {
+const TablaAsistencia = () => {
 
 
   return (
-    <Container style={{ height: 700, width: '100%' }}>
+    <Container style={{ width: '100%' }}>
+      <div className="d-flex justify-content-end mb-3">
+       <CButton color="primary" href="#/asistencia"> Finalizar </CButton> 
+      </div>
       <DataGrid
         rows={students}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
+        autoHeight
       />
-      <div className="d-flex justify-content-end mt-3">
-       <CButton color="primary" href="#/asistencia"> Finalizar </CButton> 
-      </div>
+      
     
     </Container>
   );
 };
 
-export default TablaAlumnos;
+export default TablaAsistencia;
 
 

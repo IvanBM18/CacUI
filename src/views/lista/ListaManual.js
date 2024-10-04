@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 
-import TablaAlumnos from './table'
+import TablaAsistencia from './table'
 const ListaManual = () => {
   const { name } = useParams();
   console.log('Nombre recibido:', name);
@@ -11,7 +11,7 @@ const ListaManual = () => {
       <div>
         <h1>{name}</h1>
       </div>
-      <TablaAlumnos/>
+      <TablaAsistencia/>
     </>
   )
 }

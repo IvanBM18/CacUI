@@ -10,6 +10,7 @@ import {
 } from '@coreui/react-chartjs'
 import { DocsCallout } from 'src/components'
 import StatsService from '../../services/stats/StatsService'
+import { getStyle } from '@coreui/utils'
 
 const Charts = () => {
   const random = () => Math.round(Math.random() * 100)
@@ -117,8 +118,8 @@ const Charts = () => {
                 datasets: [
                   {
                     data: [stats.totalBasicos, stats.totalIntermedios, totalAvanzados],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                    hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                    backgroundColor: [getStyle('--cui-success'), '#36A2EB', getStyle('--cui-danger')],
+                    hoverBackgroundColor: [getStyle('--cui-success'), '#36A2EB', getStyle('--cui-danger')],
                   },
                 ],
               }}

@@ -24,7 +24,7 @@ export const columns = [
   {
     field: 'photo',
     headerName: 'Photo',
-    width: 150,
+    flex: 1,
     renderCell: (params) => (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
         <img
@@ -36,13 +36,13 @@ export const columns = [
     ),
 
   },
-  { field: 'fullname', headerName: 'Nombre', width: 180,
+  { field: 'fullname', headerName: 'Nombre', flex:2,
     renderCell: (params) => (
       `${params.row.firstName} ${params.row.lastName}`
     ) 
    },
-  { field: 'id', headerName: 'Codigo', width: 120 },
-  { field: 'group', headerName: 'Grupo', width: 200, 
+  { field: 'id', headerName: 'Codigo', flex:2 },
+  { field: 'group', headerName: 'Grupo', flex:1, 
     renderCell: (params) => (
       <div style={{ textAlign: 'center', width: '100%' }}>
         {params.value}
