@@ -45,7 +45,7 @@ const TablaClases = () => {
 
 
   return (
-    <Container style={{ height: 600, width: '100%' }}>
+    <Container style={{ height: 600, width: '70%' }}>
       <DataGrid
         rows={clases}
         columns={columns}

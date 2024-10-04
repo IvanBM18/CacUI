@@ -6,7 +6,7 @@ import { columns } from "./constants";
 const SubmissionsTable = (props) => {
   return (
     <>
-      <Container style={{ height: 600, width: '100%' }}>
+      <Container style={{ height: 600, width: '80%' }}>
         <DataGrid
           rows={props.submissions}
           columns={columns}

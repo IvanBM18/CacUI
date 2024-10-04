@@ -17,7 +17,6 @@ import QRCode from 'qrcode';
 
 const AsistenciasModal = (props) => {
 
-  const [selectedValue, setSelectedValue] = useState('');
   const [selectedClassId, setSelectedClassId] = useState('');
   const [selectedSchedule, setSelectedSchedule] = useState('');
   const [selectedDay, setSelectedDay] = useState('');
