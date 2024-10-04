@@ -36,10 +36,12 @@ export const columns = [
     ),
 
   },
+  { field: 'fullname', headerName: 'Nombre', width: 180,
+    renderCell: (params) => (
+      `${params.row.firstName} ${params.row.lastName}`
+    ) 
+   },
   { field: 'id', headerName: 'Codigo', width: 120 },
-  { field: 'firstName', headerName: 'Nombre', width: 180 },
-  { field: 'lastName', headerName: 'Apellido', width: 180 },
-  { field: 'correo', headerName: 'Correo', width: 290 },
   { field: 'group', headerName: 'Grupo', width: 200, 
     renderCell: (params) => (
       <div style={{ textAlign: 'center', width: '100%' }}>

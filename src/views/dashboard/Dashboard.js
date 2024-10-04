@@ -39,12 +39,12 @@ import {
 } from '@coreui/icons'
 import { DataGrid } from '@mui/x-data-grid';
 
-import avatar1 from 'src/assets/images/avatars/1.jpg'
-import avatar2 from 'src/assets/images/avatars/2.jpg'
-import avatar3 from 'src/assets/images/avatars/3.jpg'
-import avatar4 from 'src/assets/images/avatars/4.jpg'
-import avatar5 from 'src/assets/images/avatars/5.jpg'
-import avatar6 from 'src/assets/images/avatars/6.jpg'
+import avatar1 from 'src/assets/images/avatars/1.png'
+import avatar2 from 'src/assets/images/avatars/2.png'
+import avatar3 from 'src/assets/images/avatars/3.png'
+import avatar4 from 'src/assets/images/avatars/4.png'
+import avatar5 from 'src/assets/images/avatars/2.png'
+import avatar6 from 'src/assets/images/avatars/3.png'
 
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import MainChart from './MainChart'

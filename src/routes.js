@@ -5,6 +5,7 @@ const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Settings = React.lazy(() => import('./views/settings/Settings'))
 const Users = React.lazy(() => import('./views/users/Users'))
 const Perfil = React.lazy(() => import('./views/perfil/Perfil'))
+const ListaManual = React.lazy(() => import('./views/lista/ListaManual'))
 const Asistencias = React.lazy(() => import('./views/asistencia/Asistencias'))
 const Clases = React.lazy(() => import('./views/courses/Clases'))
 const StudentDashBoard = React.lazy(() => import('./views/student/StudentDashBoard'))
@@ -65,6 +66,7 @@ const routes = [
   { path: '/settings', name: 'Ajustes', element: Settings },
   { path: '/users', name: 'Usuarios', element: Users },
   { path: '/perfil', name: 'Perfil', element: Perfil },
+  { path: '/lista/:clase', name: 'ListaManual', element: ListaManual },
   { path: '/asistencia', name: 'Asistencias', element: Asistencias },
   { path: '/courses', name: 'Clases', element: Clases },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },

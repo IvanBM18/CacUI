@@ -44,70 +44,72 @@ const AsistenciasModal = (props) => {
     console.log(selectedDay);
     console.log(selectedMode);
     const selectedClass = clases.find(clase => clase.class_id === parseInt(selectedClassId));
-    const newWindow = window.open("", "_blank");
     if(selectedMode === 'lista'){
-      newWindow.document.write(`
-        <html>
-          <head>
-            <title>${selectedClass.name}</title>
-            <style>
-              body {
-                font-family: Arial, sans-serif;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                margin: 0;
-                background-color: #f0f0f0;
-              }
-              h1 {
-                color: #333;
-                font-size: 3rem;
-                text-align: center;
-              }
-              input {
-                padding: 10px;
-                font-size: 1rem;
-                margin-top: 20px;
-                width: 250px;
-                text-align: center;
-              }
-              button {
-                margin-top: 20px;
-                padding: 10px 20px;
-                font-size: 1rem;
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                cursor: pointer;
-              }
-              button:hover {
-                background-color: #45a049;
-              }
-            </style>
-          </head>
-          <body>
-            <h1>${selectedClass.name}</h1>
-            <p1>${selectedClass.hora}</p1>
-            <p1>${selectedClass.dia}</p1>
-            <input type="text" id="codigo" placeholder="Ingrese código" />
-            <button onclick="submitCode()">Enviar código</button>
+      window.location.href = `#/lista/${selectedClass.name}`;
+    }
+      // newWindow.document.write(`
+      //   <html>
+      //     <head>
+      //       <title>${selectedClass.name}</title>
+      //       <style>
+      //         body {
+      //           font-family: Arial, sans-serif;
+      //           display: flex;
+      //           flex-direction: column;
+      //           justify-content: center;
+      //           align-items: center;
+      //           height: 100vh;
+      //           margin: 0;
+      //           background-color: #f0f0f0;
+      //         }
+      //         h1 {
+      //           color: #333;
+      //           font-size: 3rem;
+      //           text-align: center;
+      //         }
+      //         input {
+      //           padding: 10px;
+      //           font-size: 1rem;
+      //           margin-top: 20px;
+      //           width: 250px;
+      //           text-align: center;
+      //         }
+      //         button {
+      //           margin-top: 20px;
+      //           padding: 10px 20px;
+      //           font-size: 1rem;
+      //           background-color: #4CAF50;
+      //           color: white;
+      //           border: none;
+      //           cursor: pointer;
+      //         }
+      //         button:hover {
+      //           background-color: #45a049;
+      //         }
+      //       </style>
+      //     </head>
+      //     <body>
+      //       <h1>${selectedClass.name}</h1>
+      //       <p1>${selectedClass.hora}</p1>
+      //       <p1>${selectedClass.dia}</p1>
+      //       <input type="text" id="codigo" placeholder="Ingrese código" />
+      //       <button onclick="submitCode()">Enviar código</button>
   
-            <script>
-              function submitCode() {
-                const code = document.getElementById('codigo').value;
-                if (code) {
-                  alert('Código ingresado: ' + code);
-                } else {
-                  alert('Por favor, ingrese un código');
-                }
-              }
-            </script>
-          </body>
-        </html>
-      `);
-    } else{
+      //       <script>
+      //         function submitCode() {
+      //           const code = document.getElementById('codigo').value;
+      //           if (code) {
+      //             alert('Código ingresado: ' + code);
+      //           } else {
+      //             alert('Por favor, ingrese un código');
+      //           }
+      //         }
+      //       </script>
+      //     </body>
+      //   </html>
+      // `);
+    else{
+      const newWindow = window.open("", "_blank");
       const qrData = `Clase: ${selectedClass.name}, ID: ${selectedClass.class_id}`;
     
       QRCode.toDataURL(qrData, { width: 300 }, (err, url) => {
@@ -144,6 +146,8 @@ const AsistenciasModal = (props) => {
           </head>
           <body>
             <h1>${selectedClass.name}</h1>
+            <p1>${selectedClass.hora}</p1>
+            <p1>${selectedClass.dia}</p1>
             <img src="${url}" alt="Código QR" />
           </body>
         </html>
