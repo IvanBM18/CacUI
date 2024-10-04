@@ -7,23 +7,23 @@ const MainChart = () => {
   const chartRef = useRef(null)
 
   useEffect(() => {
-    document.documentElement.addEventListener('ColorSchemeChange', () => {
-      if (chartRef.current) {
-        setTimeout(() => {
-          chartRef.current.options.scales.x.grid.borderColor = getStyle(
-            '--cui-border-color-translucent',
-          )
-          chartRef.current.options.scales.x.grid.color = getStyle('--cui-border-color-translucent')
-          chartRef.current.options.scales.x.ticks.color = getStyle('--cui-body-color')
-          chartRef.current.options.scales.y.grid.borderColor = getStyle(
-            '--cui-border-color-translucent',
-          )
-          chartRef.current.options.scales.y.grid.color = getStyle('--cui-border-color-translucent')
-          chartRef.current.options.scales.y.ticks.color = getStyle('--cui-body-color')
-          chartRef.current.update()
-        })
-      }
-    })
+  document.documentElement.addEventListener('ColorSchemeChange', () => {
+  if (chartRef.current) {
+  setTimeout(() => {
+  chartRef.current.options.scales.x.grid.borderColor = getStyle(
+  '--cui-border-color-translucent',
+  )
+chartRef.current.options.scales.x.grid.color = getStyle('--cui-border-color-translucent')
+  chartRef.current.options.scales.x.ticks.color = getStyle('--cui-body-color')
+  chartRef.current.options.scales.y.grid.borderColor = getStyle(
+  '--cui-border-color-translucent',
+  )
+chartRef.current.options.scales.y.grid.color = getStyle('--cui-border-color-translucent')
+  chartRef.current.options.scales.y.ticks.color = getStyle('--cui-body-color')
+  chartRef.current.update()
+  })
+  }
+})
   }, [chartRef])
 
   const random = () => Math.round(Math.random() * 100)
@@ -37,46 +37,43 @@ const MainChart = () => {
           labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
           datasets: [
             {
-              label: 'My First dataset',
+              label: 'Basicos',
               backgroundColor: `rgba(${getStyle('--cui-info-rgb')}, .1)`,
-              borderColor: getStyle('--cui-info'),
-              pointHoverBackgroundColor: getStyle('--cui-info'),
+              borderColor: getStyle('--cui-success'),
               borderWidth: 2,
               data: [
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
+                80,
+                70,
+                40,
+                42,
+                20,
+                0,
+                0,
               ],
               fill: true,
             },
             {
-              label: 'My Second dataset',
+              label: 'Intermedios',
               backgroundColor: 'transparent',
-              borderColor: getStyle('--cui-success'),
-              pointHoverBackgroundColor: getStyle('--cui-success'),
+              borderColor: getStyle('--cui-info'),
               borderWidth: 2,
               data: [
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
+                30,
+                25,
+                27,
+                25,
+                12,
+                0,
+                0,
               ],
             },
             {
-              label: 'My Third dataset',
+              label: 'Avanzados',
               backgroundColor: 'transparent',
               borderColor: getStyle('--cui-danger'),
-              pointHoverBackgroundColor: getStyle('--cui-danger'),
               borderWidth: 1,
               borderDash: [8, 5],
-              data: [65, 65, 65, 65, 65, 65, 65],
+              data: [0,0,0,0,1,0,0],
             },
           ],
         }}
@@ -91,7 +88,6 @@ const MainChart = () => {
             x: {
               grid: {
                 color: getStyle('--cui-border-color-translucent'),
-                drawOnChartArea: false,
               },
               ticks: {
                 color: getStyle('--cui-body-color'),
@@ -105,7 +101,7 @@ const MainChart = () => {
               grid: {
                 color: getStyle('--cui-border-color-translucent'),
               },
-              max: 200,
+              max: 100,
               ticks: {
                 color: getStyle('--cui-body-color'),
                 maxTicksLimit: 5,

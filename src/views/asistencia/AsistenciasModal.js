@@ -109,7 +109,7 @@ const AsistenciasModal = (props) => {
       // `);
     else{
       const newWindow = window.open("", "_blank");
-      const qrData = `Clase: ${selectedClass.name}, ID: ${selectedClass.class_id}`;
+      const qrData = `${window.location.origin}/qr/${selectedClass.class_id}`;
     
       QRCode.toDataURL(qrData, { width: 300 }, (err, url) => {
         if (err) {

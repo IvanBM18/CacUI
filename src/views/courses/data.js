@@ -1,15 +1,26 @@
 
 
 export const columns = [
-  { field: 'name', headerName: 'Curso', width: 300 },
-  { field: 'admin', headerName: 'Instructor', width: 250 },
-  { field: 'dia', headerName: 'Dia', width: 150 },
-  { field: 'hora', headerName: 'Hora', width: 120 },
+  { field: 'name', headerName: 'Curso', flex: 3 },
+  { field: 'admin', headerName: 'Instructor', flex: 2 },
+  { field: 'dia', headerName: 'Dia', flex: 1 },
+  { field: 'hora', headerName: 'Hora', flex: 1 },
 ];
 
 export const clases = [
   { 
-    class_id: 1,
+    class_id: 0,
+    name: 'Strings I', admin: 'Elena Morales',
+    dia: '2024-03-23', hora: '13:00',
+    subtemas: [
+      'Strings',
+      'Big num',
+      'Manejo de caracteres',
+      'Sistemas numericos'
+    ]
+  },
+  { 
+    class_id: 3,
     name: 'Topicos Iniciales', admin: 'Juan Alvarado',
     dia: '2024-03-23', hora: '18:00',
     subtemas: [
@@ -27,17 +38,6 @@ export const clases = [
       'Complejidad',
       'Ejemplos de problemas',
       'Estrategias para estudiar',
-    ]
-  },
-  { 
-    class_id: 3,
-    name: 'Strings I', admin: 'Elena Morales',
-    dia: '2024-03-23', hora: '13:00',
-    subtemas: [
-      'Strings',
-      'Big num',
-      'Manejo de caracteres',
-      'Sistemas numericos'
     ]
   },
   { 

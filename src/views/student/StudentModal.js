@@ -25,11 +25,14 @@ import { useState } from 'react';
 import RegressionUtils from '../../services/ai/RegressionUtils';
 import RegressionData from '../../services/ai/models/regressionData';
 import ContestService from '../../services/contest/contestService';
+import SubmissionsTable from '../submissions/SubmissionsTable';
+import { mockData } from '../submissions/constants';
 
 const StudentModal = (props) => {
   
   const [isFormInvalid, setInvalidated] = useState(false);
   const [student, setStudent] = useState(props.student);
+  const [submissions, setSubmissions] = useState([]);
 
   const [isLoading, setLoading] = useState(true);
   const [regressionData, setRegressionData] = useState(new RegressionData());
@@ -42,6 +45,12 @@ const StudentModal = (props) => {
   async function getPrediction(data) {
     const result = await RegressionService.getPrediction(data);
     return result;
+  }
+
+  async function getSubmissions(){
+    if(student.siiauCode === "219747662"){
+      setSubmissions(mockData);
+    }
   }
 
   const handleSubmit = (event) => {
@@ -188,25 +197,23 @@ const StudentModal = (props) => {
               id="StudentInputCodeForces"
               label="CodeForces"
               placeholder="" 
-              required
+              required={false}
               onChange={(e) => setStudent({...student, codeProfiles: {...student.codeProfiles, codeForces: e.target.value}} )}
             />
             </CCol>}
-            {(student.codeProfiles.vJudge || mode === 'Create')&& 
-            <CCol>
-              <CFormInput
-              type="text"
-              defaultValue={student.codeProfiles.vJudge ?? ""}
-              id="StudentInputVJudge"
-              label="VJudge"
-              placeholder="" 
-              required
-              onChange={(e) => setStudent({...student, codeProfiles: {...student.codeProfiles, vJudge: e.target.value}} )}
-            />
-            </CCol>}
         </CRow>}
+        <CAccordion className='mt-2 mb-2'>
+        {mode !== "Create" && 
+          <CAccordionItem>
+            <CAccordionHeader onClick={() => getSubmissions()}>Historial de concursos</CAccordionHeader>
+            <CAccordionBody className='p-0'>
+              {submissions.length > 0 
+                ? <SubmissionsTable submissions={submissions} student={student} />
+                : <CCallout color='info'>El estudiante no ha participado en ningun concurso</CCallout>}
+            </CAccordionBody>
+          </CAccordionItem>
+        }
         {isPredicitionEnabled &&
-          <CAccordion className='mt-2 mb-2'>
           <CAccordionItem>
             <CAccordionHeader onClick={() => performPrediction(testData) }>Predecir desempeño</CAccordionHeader>
             <CAccordionBody className=''>  
@@ -219,15 +226,14 @@ const StudentModal = (props) => {
               </CRow>
             </CAccordionBody>
           </CAccordionItem>
-        </CAccordion>
         }
+        </CAccordion>
+
         
         <CRow className="justify-content-end">
-          <CCol md={{span: 3,offset: 8 }} >
-            <CButton color={mode === "Create" ? "success" : "primary"} type="submit">
-              {mode === "Create" ? "Agregar" : "Actualizar"}
-            </CButton>
-          </CCol>
+          <CButton color={mode === "Create" ? "success" : "primary"} type="submit">
+            {mode === "Create" ? "Agregar" : "Actualizar"}
+          </CButton>
         </CRow>
         </CForm>
     </DefaultModal>

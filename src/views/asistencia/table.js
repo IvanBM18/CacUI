@@ -93,17 +93,18 @@ const TablaAsistencias = () => {
   const [isOpenStudent, setIsOpenStudent] = useState(false)
 
   return (
-    <Container style={{ height: 700, width: '100%' }}>
+    <Container style={{ width: '100%' }} className='justify-content-end'>
+      <div className="d-flex justify-content-end mb-3">
+        <CButton color="primary" onClick={handleAddButton}> + Tomar Asistencia</CButton>
+      </div>  
       <DataGrid
+        autoHeight
         rows={rows}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
+        density='compact'
       />
-      <div className="d-flex justify-content-end mt-3">
-      <CButton color="primary" onClick={handleAddButton}> + Tomar Asistencia</CButton>
-      </div>    
-
       {isOpen && <AsistenciasModal onClose={props.onClose} student={props.student} />}
     </Container>
   );

@@ -14,13 +14,21 @@ import { CForm,
 
 import { useState } from 'react';
 
+const initSubject = { 
+  class_id: -1,
+  name: '', admin: '',
+  dia: '', hora: '',
+  subtemas: [
+  ]
+}
+
 const ClaseModal = (props) => {
   const [isFormInvalid, setInvalidated] = useState(false);
   const [row, setRow] = useState(props.row);
   const [textoLista, setTextoLista] = useState(props.subtemas);
 
   let mode = props.mode;
-  let title = mode === "Create" ? "Agregar Estudiante" : row.firstName + " " + row.lastName;
+  let title = mode === "Create" ? "Agregar Clase" : row.name ;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,11 +41,12 @@ const ClaseModal = (props) => {
     }
     console.log("Form submitted");
     setInvalidated(false);
+    props.onClose(row);
   }
   
   return (
     <DefaultModal
-      title={row.name}
+      title={title}
       onClose={props.onClose}>
         <CForm
           className="row g-3 needs-validation"
@@ -45,14 +54,27 @@ const ClaseModal = (props) => {
           validated={isFormInvalid}
           onSubmit={handleSubmit}
         >
+        {mode === "Create" && 
+          <CRow className='mt-2 mb-2'>
+            <CCol>
+              <CFormInput 
+                label="Nombre de la Clase"
+                id='SubjectName'
+                placeholder="Nombre de la Clase"
+                onChange={(e) => setRow({...row, name: e.target.value})}
+                required
+              />
+            </CCol>
+          </CRow>
+        }  
         <CRow className="mt-2 mb-2">
-          <CFormLabel htmlFor='StudentInputEmail'>Instructor</CFormLabel>
+          <CFormLabel htmlFor='SubjectTeacher'>Instructor</CFormLabel>
           <CInputGroup className="" >
             <CFormInput 
-              id='StudentInputEmail'
+              id='SubjectTeacher'
               defaultValue={row.admin ?? ""}
               placeholder="Instructor" 
-              onChange={(e) => setStudent({...row, admin: e.target.value})}
+              onChange={(e) => setRow({...row, admin: e.target.value})}
               />
           </CInputGroup>
         </CRow>
@@ -64,7 +86,7 @@ const ClaseModal = (props) => {
               id="StudentInputRegisterDate"
               label="Fecha de Clase"
               required
-              onChange={(e) => setStudent({...row, dia: e.target.value})}
+              onChange={(e) => setRow({...row, dia: e.target.value})}
             />
           </CCol>
           <CCol>
@@ -73,30 +95,27 @@ const ClaseModal = (props) => {
                 defaultValue={row.hora ?? ""}
                 id="StudentInputLastName"
                 label="Hora"
-                onChange={(e) => setStudent({...row, hora: e.target.value})}
+                onChange={(e) => setRow({...row, hora: e.target.value})}
                 required
               />
           </CCol>
         </CRow>
         <CRow className="mt-2 mb-2">
-          <CFormLabel htmlFor='StudentInputEmail'>Subtemas</CFormLabel>
-          <CFormTextarea
-                type="text"
-                defaultValue={row.subtemas.join(',\n') ?? ""
-                }
-                id="StudentInputLastName"
-                label="Subtemas"
-                rows={5}
-                onChange={(e) => setStudent({...row, subtemas: e.target.value})}
-                required
-              />
+          <CCol>
+            <CFormTextarea
+              type="text"
+              defaultValue={row.subtemas.join(',\n') ?? ""}
+              id="StudentInputLastName"
+              label="Subtemas"
+              rows={5}
+              onChange={(e) => setRow({...row, subtemas: [...row.subtemas, e.target.value]})}
+            />
+          </CCol>
         </CRow>
         <CRow className="justify-content-end">
-          <CCol md={{span: 3,offset: 8 }} >
             <CButton color={mode === "Create" ? "success" : "primary"} type="submit">
               {mode === "Create" ? "Agregar" : "Modificar"}
             </CButton>
-          </CCol>
         </CRow>
         </CForm>
     </DefaultModal>
