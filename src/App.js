@@ -11,7 +11,7 @@ const Perfil = React.lazy(() => import('./views/perfil/Perfil'))
 
 
 // Pages
-const QrAssists = React.lazy(() => import('./views/pages/qrAssists/qrAssists'))
+const QrAssists = React.lazy(() => import('./views/pages/qrAssists/QrAssists'))
 const Login = React.lazy(() => import('./views/pages/login/Login'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
