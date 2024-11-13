@@ -7,13 +7,13 @@ const API_URL = import.meta.env.VITE_API_URL + "/api/v1/";
 export default class ContestService {
 
     static async getStudentSubmissions(student){
-        if(!student || student.student_id == null || student.student_id < 0 || !student.siiauCode){
-            console.warn("Invalid student data in getStudentSubmissions");
+        if(!student || student.studentId == null || student.studentId < 0 || !student.siiauCode){
+            console.warn("Invalid student ID or SiiauCode in getStudentSubmissions");
             return [];
         }
         try{
             const api = customAPI(API_URL);
-            const response = await api.get(`/contest/student/${student.student_id}`,{
+            const response = await api.get(`/contest/student/${student.studentId}`,{
                 headers:{
                     'Access-Control-Allow-Origin': '*',
                     }
