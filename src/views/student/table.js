@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import StudentService from 'src/services/student/StudentService';
 import avatar3 from 'src/assets/images/avatars/3.png'
 import { students, columns} from './data'
-import { useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { Container } from '@mui/material'
 import {
@@ -27,7 +27,7 @@ const TablaAlumnos = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [selectedMode, setSelectedMode] = useState(null);
-  const [tableStudents, setStudents] = useState(students);
+  const [studentsForTable, setStudents] = useState([]);
 
   const handleCellClick = (params) => {
     setSelectedStudent(params.row);
@@ -40,11 +40,11 @@ const TablaAlumnos = () => {
     if(student){
       if(selectedMode === "Create"){
         student.photo = avatar3,
-        student.id = tableStudents.length + 1;
-        setStudents([...tableStudents, student]);
+        student.id = studentsForTable.length + 1;
+        setStudents([...studentsForTable, student]);
       }
       if(selectedMode === "Update"){
-        setStudents(tableStudents.map(s => s.id === student.id ? student : s));
+        setStudents(studentsForTable.map(s => s.id === student.id ? student : s));
       }
       console.log(student);
     }
@@ -66,18 +66,31 @@ const TablaAlumnos = () => {
     footer: null
   }
 
+  async function getAllStudents(){
+    console.log("Getting all students")
+    const studentResults = await StudentService.getAll();
+    setStudents(studentResults);
+    console.log("Students: ", studentResults);
+  }
+
+  useEffect(() => {
+    getAllStudents()
+  }, [])
+
+
   return (
     <Container style={{ width: '100%' }} className='justify-content-end'>
       <div className="d-flex justify-content-end mb-3">
         <CButton color="primary" onClick={handleAddButton}> + Agregar Alumno</CButton> 
       </div>
       <DataGrid
-        rows={tableStudents}
+        rows={studentsForTable}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
         autoHeight
         onCellClick={handleCellClick}
+        getRowId={(row) => row.studentId}
         //checkboxSelection
         //disableSelectionOnClick
       />

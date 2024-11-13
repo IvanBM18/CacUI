@@ -14,7 +14,12 @@ export default class StudentService {
                     }
             });
             //TODO: Format date
-            return await response.data;
+            let students = await response.data;
+            students = students.map(student => {
+                student.registerDate = this.formatDate(student.registerDate);
+                return student;
+            });
+            return students;
         }catch(e){
             console.log("Error getting students: ", e);
         }

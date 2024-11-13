@@ -36,7 +36,7 @@ export const columns = [
     ),
 
   },
-  { field: 'id', headerName: 'Codigo', width: 120 },
+  { field: 'studentId', headerName: 'Codigo', width: 120 },
   { field: 'firstName', headerName: 'Nombre', width: 180 },
   { field: 'lastName', headerName: 'Apellido', width: 180 },
   { field: 'email', headerName: 'Correo', width: 290 },
@@ -59,7 +59,7 @@ export const students = [
     photo: avatar1,
     firstName: 'Ivan',
     lastName: 'Barba macias',
-    student_id: '0',
+    studentd: '0',
     id: '219747662',
     registerDate: '2023-04-10',
     siiauCode: '219747662',
