@@ -22,7 +22,7 @@ import CIcon from '@coreui/icons-react'
 import {
   cilPeople,
 } from '@coreui/icons'
-import avatar3 from 'src/assets/images/avatars/3.jpg'
+import avatar1 from '../../assets/images/avatars/1.png'
 import DataPerfil from './data';
 import PerfilModal from './PerfilModal';
 import { students } from '../student/data';
@@ -32,12 +32,12 @@ const TablaPerfil = () => {
 
   let props={
     student: {
-      photo: avatar3,
-      user: "Luis Martinez",
-      code: "219747661",
-      refister_date: "Jan 1, 2023",
-      email: "luis.martinez@alumnos.udg.mx",
-      password: "pass456",
+      photo: avatar1,
+      user: "Ivan Barba",
+      code: "219747662",
+      register_date: "Jan 1, 2023",
+      email: "ivan.barba7476@alumnos.udg.mx",
+      password: "password",
     },
     onClose: () => setIsOpenStudent(!isOpenStudent),
     mode: "Update",

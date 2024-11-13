@@ -56,7 +56,7 @@ export const columns = [
 
 export const students = [
  {
-    photo: avatar3,
+    photo: avatar1,
     firstName: 'Ivan',
     lastName: 'Barba macias',
     student_id: '0',

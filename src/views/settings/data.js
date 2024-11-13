@@ -1,11 +1,11 @@
 
 
-import avatar6 from 'src/assets/images/avatars/3.png'
+import avatar1 from 'src/assets/images/avatars/1.png'
 
 
 const DataSettings = [
   {
-    avatar: { src: avatar6},
+    avatar: { src: avatar1},
     user: {
       name: 'Ivan Barba',
       new: true,

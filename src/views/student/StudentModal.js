@@ -24,7 +24,7 @@ import Regression3DPlot from '../../components/graphics/Regression3DPlot';
 import { useState } from 'react';
 import RegressionUtils from '../../services/ai/RegressionUtils';
 import RegressionData from '../../services/ai/models/regressionData';
-import ContestService from '../../services/contest/contestService';
+import ContestService from '../../services/contest/ContestService';
 import SubmissionsTable from '../submissions/SubmissionsTable';
 import { mockData } from '../submissions/constants';
 
@@ -166,7 +166,7 @@ const StudentModal = (props) => {
               label="Grupo"
               placeholder="Selecciona..." 
               required
-              value={student.group? "Seleciona..." : student.group}
+              value={student.group ? student.group: "Seleciona..."}
               onChange={(e) => setStudent({...student, group: e.target.value})}
             >
               <option value="Basicos">Basicos</option>

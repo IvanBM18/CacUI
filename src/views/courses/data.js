@@ -9,7 +9,7 @@ export const columns = [
 
 export const clases = [
   { 
-    class_id: 0,
+    class_id: 1,
     name: 'Strings I', admin: 'Elena Morales',
     dia: '2024-03-23', hora: '13:00',
     subtemas: [
