@@ -24,7 +24,7 @@ export default class ContestService {
                 if(!result.has(submission.contestId)){
                     result.set(submission.contestId, new ContestData(submission.contesId,submission.totalProblems,0,submission.difficulty));
                 }
-                if(submission.verdict === "AC"){
+                if(submission.verdict === "AC" || submission.verdict === "OK"){
                     result.get(submission.contestId).correct++;
                 }
             });
