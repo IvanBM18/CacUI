@@ -27,7 +27,6 @@ const TablaClases = () => {
 
   const handleCellClick = (params) => {
     setSelectedSubject(params.row);
-    console.log(params.row.name)
     setSelectedMode("Update");
     setIsOpen(!isOpen)
   };
@@ -36,12 +35,12 @@ const TablaClases = () => {
     setIsOpen(false);
     if(subject){
       if(selectedMode === "Create"){
-        subject.classId = subjectsForTable.length + 1;
+        subject.classId = "";
         setSubjects([...subjectsForTable, subject]);
         SubjectService.add(subject);
       }
       if(selectedMode === "Update"){
-        setSubjects(subjectsForTable.map(s => s.id === subject.id ? subject : s));
+        setSubjects(subjectsForTable.map(s => s.classId === subject.classId ? subject : s));
         SubjectService.edit(subject);
       }
       console.log(subject);

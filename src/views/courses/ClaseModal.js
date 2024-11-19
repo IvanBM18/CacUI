@@ -17,7 +17,6 @@ import { useState } from 'react';
 const ClaseModal = (props) => {
   const [isFormInvalid, setInvalidated] = useState(false);
   const [subject, setSubject] = useState(props.subject);
-  const [textoLista, setTextoLista] = useState(props.subtemas);
 
   let mode = props.mode;
   let title = mode === "Create" ? "Agregar Clase" : subject.name ;
@@ -46,29 +45,32 @@ const ClaseModal = (props) => {
           validated={isFormInvalid}
           onSubmit={handleSubmit}
         >
-        {mode === "Create" && 
-          <CRow className='mt-2 mb-2'>
-            <CCol>
-              <CFormInput 
-                label="Nombre de la Clase"
-                id='SubjectName'
-                placeholder="Nombre de la Clase"
-                onChange={(e) => setSubject({...subject, name: e.target.value})}
-                required
-              />
-            </CCol>
-          </CRow>
-        }  
-        <CRow className="mt-2 mb-2">
-          <CFormLabel htmlFor='SubjectTeacher'>Instructor</CFormLabel>
-          <CInputGroup className="" >
+        <CRow className='mt-2 mb-2'>
+          <CCol>
             <CFormInput 
-              id='SubjectTeacher'
-              defaultValue={subject.professorId ?? ""}
-              placeholder="Instructor" 
-              onChange={(e) => setSubject({...subject, professorId: e.target.value})}
-              />
-          </CInputGroup>
+              label="Nombre de la Clase"
+              id='SubjectName'
+              defaultValue={subject.name ?? ""}
+              placeholder="Nombre de la Clase"
+              onChange={(e) => setSubject({...subject, name: e.target.value})}
+              required
+            />
+          </CCol>
+        </CRow>
+        <CRow className="mt-2 mb-2">
+          <CCol xs={5}> 
+              <CFormSelect
+                id="SubjectInputGroup"
+                label="Grupo"
+                placeholder="Selecciona..." 
+                required
+                value={subject.groupId ? subject.groupId: "Seleciona..."}
+                onChange={(e) => setSubject({...subject, groupId: parseInt(e.target.value)})}
+              >
+                <option value= {0} >Basicos</option>
+                <option value={1}>Intermedios</option>
+              </CFormSelect>
+          </CCol>
         </CRow>
         <CRow className="mt-2 mb-2">
           <CCol >
@@ -85,12 +87,10 @@ const ClaseModal = (props) => {
         <CRow className="mt-2 mb-2">
           <CCol>
             <CFormTextarea
-              type="text"
               defaultValue={subject.description ?? ""}
               id="StudentInputLastName"
-              label="Subtemas"
-              rows={5}
-              onChange={(e) => setSubject({...subject, description: [...subject.description, e.target.value]})}
+              label="Descripcion"
+              onChange={(e) => setSubject({...subject, description: e.target.value})}
             />
           </CCol>
         </CRow>

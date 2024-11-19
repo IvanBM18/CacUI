@@ -39,7 +39,7 @@ const TablaAlumnos = () => {
     console.log(student);
     if(student){
       if(selectedMode === "Create"){
-        student.studentId = studentsForTable.length + 1;
+        student.studentId = -1;
         setStudents([...studentsForTable, student]);
         StudentService.add(student);
       }
@@ -92,8 +92,6 @@ const TablaAlumnos = () => {
         autoHeight
         onCellClick={handleCellClick}
         getRowId={(row) => row.studentId}
-        //checkboxSelection
-        //disableSelectionOnClick
       />
       
 

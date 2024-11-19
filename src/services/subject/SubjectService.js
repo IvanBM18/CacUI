@@ -41,30 +41,31 @@ export default class SubjectService{
     }
 
     static async edit(subject){
-        const api = customAPI(API_URL);
-        student.registerDate = this.reverseFormattedDate(student.registerDate)
+        const api = customAPI(url);
+        subject.classDate = this.reverseFormattedDate(subject.classDate)
         try {
-            await api.put('', student, {
+            await api.put('', subject, {
                 headers:{
                     'Access-Control-Allow-Origin': '*',
                     }
             });
         }catch(e){
-            console.log("Error adding student: ", e);
+            console.log("Error updating subject: ", e);
         }
     }
 
     static async add(subject){
-        const api = customAPI(API_URL);
-        student.registerDate = this.reverseFormattedDate(student.registerDate)
+        const api = customAPI(url);
+        subject.classDate = this.reverseFormattedDate(subject.classDate)
+        
         try {
-            await api.post('', student, {
+            await api.post('', subject, {
                 headers:{
                     'Access-Control-Allow-Origin': '*',
                     }
             });
         }catch(e){
-            console.log("Error updating student: ", e);
+            console.log("Error adding subject: ", e);
         }
     }
 
