@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import StudentService from 'src/services/student/StudentService';
-import avatar3 from 'src/assets/images/avatars/3.png'
-import { students, columns} from './data'
+import { columns} from './data'
 import { DataGrid } from '@mui/x-data-grid'
 import { Container } from '@mui/material'
 import {
@@ -37,14 +36,16 @@ const TablaAlumnos = () => {
 
   const closeStudentModal = (student) => {
     setIsOpen(false);
+    console.log(student);
     if(student){
       if(selectedMode === "Create"){
-        student.photo = avatar3,
-        student.id = studentsForTable.length + 1;
+        student.studentId = studentsForTable.length + 1;
         setStudents([...studentsForTable, student]);
+        StudentService.add(student);
       }
       if(selectedMode === "Update"){
-        setStudents(studentsForTable.map(s => s.id === student.id ? student : s));
+        setStudents(studentsForTable.map(s => s.studentId === student.studentId ? student : s));
+        StudentService.edit(student);
       }
       console.log(student);
     }

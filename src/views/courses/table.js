@@ -1,59 +1,78 @@
 import React from 'react'
-
-import { clases, columns} from './data'
-import { useState } from 'react'
+import SubjectService from 'src/services/subject/SubjectService';
+import { columns} from './data'
+import { useEffect, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { Container } from '@mui/material'
-import {
-  CButton,
-} from '@coreui/react'
+import {CButton} from '@coreui/react'
 import ClaseModal from './ClaseModal'
 
 
+const initSubject = {
+  classId: null,
+  name:  "",
+  description:  "",
+  classDate:  "",
+  groupId: 0,
+  professorId: 0,
+}
+
 const TablaClases = () => {
+
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedRow, setSelectedRow] = useState(null);
-  const [selectMode, setSelectedMode] = useState('Create');
-  const [tableClases, setClases] = useState(clases);
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [selectedMode, setSelectedMode] = useState(null);
+  const [subjectsForTable, setSubjects] = useState([]);
 
-  const [selectedRowId, setSelectedRowId] = React.useState(null);
-
-  const onClose = (subject) =>{
-    if(subject){
-      if(selectMode === "Create"){
-        subject.id = tableClases.length + 1;
-        subject.class_id = tableClases.length + 1;
-        setClases([...tableClases, subject]);
-      }
-    }
-    setIsOpen(false);
-  }
-
-  //CRUD Clase
-  let props={
-    row: selectedRow,
-    onClose: onClose,
-    mode: selectMode,
-    footer: null
-  }
 
   const handleCellClick = (params) => {
-    setSelectedRow(params.row);
+    setSelectedSubject(params.row);
+    console.log(params.row.name)
     setSelectedMode("Update");
     setIsOpen(!isOpen)
   };
 
+  const closeClaseModal = (subject) => {
+    setIsOpen(false);
+    if(subject){
+      if(selectedMode === "Create"){
+        subject.classId = subjectsForTable.length + 1;
+        setSubjects([...subjectsForTable, subject]);
+        SubjectService.add(subject);
+      }
+      if(selectedMode === "Update"){
+        setSubjects(subjectsForTable.map(s => s.id === subject.id ? subject : s));
+        SubjectService.edit(subject);
+      }
+      console.log(subject);
+    }
+    setSelectedSubject(initSubject);
+  }
+
   const handleAddButton = () => {
-    setSelectedRow({
-      class_id: null,
-      name: '',
-      admin: '',
-      dia: '', hora: '',
-      subtemas: []
-    });
+    setSelectedSubject(initSubject);
     setSelectedMode("Create");
     setIsOpen(!isOpen)
   };
+
+  //CRUD Clase
+  let props={
+    subject: selectedSubject,
+    onClose: closeClaseModal,
+    mode: selectedMode,
+    footer: null
+  }
+
+  async function getAllSubjects(){
+    console.log("Getting all subjects")
+    const subjectResults = await SubjectService.getAll();
+    setSubjects(subjectResults);
+    console.log("Subjects: ", subjectResults);
+  }
+
+  useEffect(() => {
+    getAllSubjects()
+  }, [])
 
 
   return (
@@ -63,15 +82,15 @@ const TablaClases = () => {
       </div>
       <DataGrid
         autoHeight
-        rows={tableClases}
+        rows={subjectsForTable}
         columns={columns}
         pageSize={5}
         onCellClick={handleCellClick}
-        getRowId={(row) => row.class_id} // Especifica que el identificador es class_id
+        getRowId={(row) => row.classId} // Especifica que el identificador es classId 
       />
       
       
-      {isOpen && <ClaseModal onClose={props.onClose} row={props.row} mode={selectMode}/>}
+      {isOpen && <ClaseModal mode={selectedMode} onClose={props.onClose} subject={props.subject} />}
 
     </Container>
     

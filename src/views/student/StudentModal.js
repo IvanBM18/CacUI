@@ -100,6 +100,16 @@ const StudentModal = (props) => {
     }
     return email;
   }
+
+  const cleanCode = (siiauCode) => {
+    if(!siiauCode){
+      return "";
+    }
+    if(siiauCode.length !== 9){
+      return "";
+    }
+    return siiauCode;
+  }
   
 
 
@@ -152,10 +162,11 @@ const StudentModal = (props) => {
           <CCol xs={7}> 
             <CFormInput
               type="text"
-              defaultValue={student.siiauCode ?? ""}
+              defaultValue={cleanCode(student.siiauCode)}
               id="StudentInputSiiauCode"
               label="Codigo"
               placeholder="XXXXXXXXX" 
+              maxLength={9}
               required
               onChange={(e) => setStudent({...student, siiauCode: e.target.value})}
             />

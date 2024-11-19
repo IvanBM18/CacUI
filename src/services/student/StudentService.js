@@ -40,6 +40,33 @@ export default class StudentService {
             console.log("Error getting student: ", e);
         }
     }
+    static async edit(student){
+        const api = customAPI(API_URL);
+        student.registerDate = this.reverseFormattedDate(student.registerDate)
+        try {
+            await api.put('', student, {
+                headers:{
+                    'Access-Control-Allow-Origin': '*',
+                    }
+            });
+        }catch(e){
+            console.log("Error adding student: ", e);
+        }
+    }
+
+    static async add(student){
+        const api = customAPI(API_URL);
+        student.registerDate = this.reverseFormattedDate(student.registerDate)
+        try {
+            await api.post('', student, {
+                headers:{
+                    'Access-Control-Allow-Origin': '*',
+                    }
+            });
+        }catch(e){
+            console.log("Error updating student: ", e);
+        }
+    }
 
     static async getByCode(siiauCode){
         const api = customAPI(API_URL);
@@ -60,5 +87,8 @@ export default class StudentService {
     static formatDate(date){
         return new Date(date).toISOString().split('T')[0];
     }
+    static reverseFormattedDate(isoDateString) {
+        return new Date(`${isoDateString}T00:00:00Z`);
+      }
 
 }

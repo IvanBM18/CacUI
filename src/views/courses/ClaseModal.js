@@ -14,26 +14,18 @@ import { CForm,
 
 import { useState } from 'react';
 
-const initSubject = { 
-  class_id: -1,
-  name: '', admin: '',
-  dia: '', hora: '',
-  subtemas: [
-  ]
-}
-
 const ClaseModal = (props) => {
   const [isFormInvalid, setInvalidated] = useState(false);
-  const [row, setRow] = useState(props.row);
+  const [subject, setSubject] = useState(props.subject);
   const [textoLista, setTextoLista] = useState(props.subtemas);
 
   let mode = props.mode;
-  let title = mode === "Create" ? "Agregar Clase" : row.name ;
+  let title = mode === "Create" ? "Agregar Clase" : subject.name ;
 
   const handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(row);
+    console.log(subject);
     if(!event.currentTarget.checkValidity()){
       console.log("Form not valid");
       setInvalidated(true);
@@ -41,7 +33,7 @@ const ClaseModal = (props) => {
     }
     console.log("Form submitted");
     setInvalidated(false);
-    props.onClose(row);
+    props.onClose(subject);
   }
   
   return (
@@ -61,7 +53,7 @@ const ClaseModal = (props) => {
                 label="Nombre de la Clase"
                 id='SubjectName'
                 placeholder="Nombre de la Clase"
-                onChange={(e) => setRow({...row, name: e.target.value})}
+                onChange={(e) => setSubject({...subject, name: e.target.value})}
                 required
               />
             </CCol>
@@ -72,9 +64,9 @@ const ClaseModal = (props) => {
           <CInputGroup className="" >
             <CFormInput 
               id='SubjectTeacher'
-              defaultValue={row.admin ?? ""}
+              defaultValue={subject.professorId ?? ""}
               placeholder="Instructor" 
-              onChange={(e) => setRow({...row, admin: e.target.value})}
+              onChange={(e) => setSubject({...subject, professorId: e.target.value})}
               />
           </CInputGroup>
         </CRow>
@@ -82,33 +74,23 @@ const ClaseModal = (props) => {
           <CCol >
             <CFormInput
               type="date"
-              defaultValue={row.dia ?? ""}
+              defaultValue={subject.classDate ?? ""}
               id="StudentInputRegisterDate"
               label="Fecha de Clase"
               required
-              onChange={(e) => setRow({...row, dia: e.target.value})}
+              onChange={(e) => setSubject({...subject, classDate: e.target.value})}
             />
-          </CCol>
-          <CCol>
-              <CFormInput
-                type="time"
-                defaultValue={row.hora ?? ""}
-                id="StudentInputLastName"
-                label="Hora"
-                onChange={(e) => setRow({...row, hora: e.target.value})}
-                required
-              />
           </CCol>
         </CRow>
         <CRow className="mt-2 mb-2">
           <CCol>
             <CFormTextarea
               type="text"
-              defaultValue={row.subtemas.join(',\n') ?? ""}
+              defaultValue={subject.description ?? ""}
               id="StudentInputLastName"
               label="Subtemas"
               rows={5}
-              onChange={(e) => setRow({...row, subtemas: [...row.subtemas, e.target.value]})}
+              onChange={(e) => setSubject({...subject, description: [...subject.description, e.target.value]})}
             />
           </CCol>
         </CRow>

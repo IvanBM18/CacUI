@@ -1,5 +1,5 @@
 export default class Student{
-    constructor(studentId, firstName, lastName, siiauCode, registerDate,email = null){
+    constructor(classId, firstName, lastName, siiauCode, registerDate,email = null){
         this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
