@@ -171,22 +171,6 @@ const StudentModal = (props) => {
               onChange={(e) => setStudent({...student, siiauCode: e.target.value})}
             />
           </CCol>
-          <CCol xs={5}> 
-            <CFormSelect
-              id="StudentInputGroup"
-              label="Grupo"
-              placeholder="Selecciona..." 
-              required
-              value={student.group ? student.group: "Seleciona..."}
-              onChange={(e) => setStudent({...student, group: e.target.value})}
-            >
-              <option value="Basicos">Basicos</option>
-              <option value="Intermedios">Intermedios</option>
-              <option value='Avanzado'>Avanzados</option>
-            </CFormSelect>
-          </CCol>
-        </CRow>
-        <CRow className="mt-2 mb-2">
           <CCol >
             <CFormInput
               type="date"

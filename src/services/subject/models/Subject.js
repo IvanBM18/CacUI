@@ -1,11 +1,11 @@
-export default class Student{
-    constructor(classId, firstName, lastName, siiauCode, registerDate,email = null){
-        this.studentId = studentId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.siiauCode = siiauCode;
-        this.registerDate = registerDate;
-        this.email = email;
+export default class Subject{
+    constructor(classId, name, description, classDate, groupId, professorId){
+        this.classId = classId;
+        this.name = name;
+        this.description = description;
+        this.classDate = classDate;
+        this.groupId = groupId;
+        this.professorId = professorId;
     }
 
     getJSON(){

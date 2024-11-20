@@ -20,21 +20,10 @@ const getCellColor = (level) => {
 
 export const columns = [
 
-  { field: 'siiauCode', headerName: 'Codigo', width: 120 },
-  { field: 'firstName', headerName: 'Nombre', width: 180 },
-  { field: 'lastName', headerName: 'Apellido', width: 180 },
-  { field: 'email', headerName: 'Correo', width: 290 },
-  { field: 'group', headerName: 'Grupo', width: 200, 
-    // renderCell: (params) => (
-    //   <div style={{ textAlign: 'center', width: '100%' }}>
-    //     {params.value}
-    //   </div>
-    // ),
-  //   renderCell: (params) => (
-  //   <div style={{ backgroundColor: getCellColor(params.value), textAlign: 'center', borderRadius: '4px' }}>
-  //     {params.value}
-  //   </div>
-  // ), 
-  },
+  { field: 'siiauCode', headerName: 'Codigo', flex: 1 },
+  { field: 'firstName', headerName: 'Nombre', flex: 1  },
+  { field: 'lastName', headerName: 'Apellido', flex: 1 },
+  { field: 'email', headerName: 'Correo', flex: 2 },
+
   
 ];
