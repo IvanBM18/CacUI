@@ -18,12 +18,12 @@ export const columns = [
   { field: 'groupId', headerName: 'Grupo', flex: 1,
     renderCell: (params) => (
       <div style={{ textAlign: 'center', width: '100%' }}>
-        {params.value}
+        {params.value === 0 ? 'Basicos' : 'Intermedios'}
       </div>
     ),
     renderCell: (params) => (
     <div style={{ backgroundColor: getCellColor(params.value), textAlign: 'center', borderRadius: '4px' }}>
-      {params.value}
+       {params.value === 0 ? 'Basicos' : 'Intermedios'}
     </div>
   ), 
   },
