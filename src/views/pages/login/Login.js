@@ -16,6 +16,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import UserService from 'src/services/users/UserService';
 
 
 const Login = () => {
@@ -25,15 +26,26 @@ const Login = () => {
   const [error, setError] = React.useState('')
 
   const handleLogin = () => {
-    if(username === 'admin' && password === 'password'){
-      console.log('Login')
-      navigate('/#')
+    console.log(username);
+    console.log(password);
+    try {
+      const user = UserService.get(username, password);
+  
+      console.log('Response data:', response.data);
+    } catch (error) {
+      setError('Usuario o Contraseña Incorrectos');
+      console.error('Error:', error);
     }
-    if(username === 'ivan.barba7476@alumnos.udg.mx' && password === 'password'){
-      console.log('Login')
-      navigate('/#')
-    }
-    setError('Usuario o Contraseña Incorrectos')
+
+    // if(username === 'admin' && password === 'password'){
+    //   console.log('Login')
+    //   navigate('/#')
+    // }
+    // if(username === 'ivan.barba7476@alumnos.udg.mx' && password === 'password'){
+    //   console.log('Login')
+    //   navigate('/#')
+    // }
+    // setError('Usuario o Contraseña Incorrectos')
   }
 
   return (

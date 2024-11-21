@@ -40,6 +40,18 @@ export default class SubjectService{
         }
     }
 
+    static async getSubjectsWithoutClass(){
+        const api = customAPI(url);
+        try {
+            const response = await api.get('/no-attendance');
+            let data = await response.data;
+            return data;
+        }catch(e){
+            console.log("Error getting students: ", e);
+            return null;
+        }
+    }
+
     static async edit(subject){
         const api = customAPI(url);
         subject.classDate = this.reverseFormattedDate(subject.classDate)
@@ -68,6 +80,7 @@ export default class SubjectService{
             console.log("Error adding subject: ", e);
         }
     }
+
 
     static formatDate(date){
         return new Date(date).toISOString().split('T')[0];

@@ -51,7 +51,7 @@ const AsistenciasModal = (props) => {
 
   async function getAllSubjects(){
     console.log("Getting all subjects")
-    const subjectResults = await SubjectService.getAll();
+    const subjectResults = await SubjectService.getSubjectsWithoutClass();
     setSubjects(subjectResults);
     console.log("Subjects: ", subjectResults);
   }
