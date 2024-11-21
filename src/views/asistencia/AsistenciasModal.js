@@ -28,13 +28,12 @@ const AsistenciasModal = (props) => {
 
 
 
-  // Manejar el cambio en el select
   const handleChange = (event) => {
     const classId = event.target.value;
     setSelectedClassId(classId);
     const selectedClass = subjectsForTable.find(clase => clase.classId === parseInt(classId));
-    setSelectedSchedule(selectedClass ? selectedClass.hora : '');
-    setSelectedDay(selectedClass ? selectedClass.dia : '');
+    setSelectedSchedule(selectedClass ? selectedClass.getGroupId === 0 ? 'Basicos' : 'Intermedios' : '');
+    setSelectedDay(selectedClass ? selectedClass.classDate : '');
   };
 
   const handleMode = (event) => {
@@ -51,9 +50,14 @@ const AsistenciasModal = (props) => {
 
   async function getAllSubjects(){
     console.log("Getting all subjects")
-    const subjectResults = await SubjectService.getSubjectsWithoutClass();
-    setSubjects(subjectResults);
-    console.log("Subjects: ", subjectResults);
+    try{
+      const subjectResults = await SubjectService.getSubjectsWithoutClass();
+      console.log("Subjects: ", subjectResults);
+      setSubjects(subjectResults);
+    }catch(e){
+      console.log("Error getting subjects: ", e);
+      setSubjects([]);
+    }
   }
 
   useEffect(() => {
@@ -62,6 +66,10 @@ const AsistenciasModal = (props) => {
   }, [])
 
   const handleButton = (event) => {
+    if(subjectsForTable.length === 0){
+      alert('No hay clases disponibles');
+      return;
+    }
     console.log(selectedClassId);
     console.log(selectedSchedule);
     console.log(selectedDay);
@@ -109,8 +117,8 @@ const AsistenciasModal = (props) => {
           </head>
           <body>
             <h1>${selectedClass.name}</h1>
-            <p1>${selectedClass.hora}</p1>
-            <p1>${selectedClass.dia}</p1>
+            <p1>${selectedSchedule}</p1>
+            <p1>${selectedDay}</p1>
             <img src="${url}" alt="Código QR" />
           </body>
         </html>
@@ -135,7 +143,7 @@ const AsistenciasModal = (props) => {
             <option value="" disabled>
               Selecciona una clase
             </option>
-            {subjectsForTable.map(clase => (
+            {subjectsForTable && subjectsForTable.map(clase => (
               <option key={clase.classId} value={clase.classId}>
                 {clase.name}
                 
@@ -144,7 +152,7 @@ const AsistenciasModal = (props) => {
           </CFormSelect>
           {selectedSchedule  && (
             <div style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}>
-              <strong> Horario:</strong> {selectedSchedule}
+              <strong> Grupo:</strong> {selectedSchedule}
               <strong> Dia:</strong> {selectedDay}
             </div>
           )}

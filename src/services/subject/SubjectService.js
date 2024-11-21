@@ -1,6 +1,6 @@
 import customAPI from "../api";
 
-const url = import.meta.env.VITE_API_URL + "/api/v1/subject";
+const url = import.meta.env.VITE_LOCAL_API_URL + "/api/v1/subject";
 
 export default class SubjectService{
 
@@ -9,7 +9,7 @@ export default class SubjectService{
     static async getSubject(id){
         const api = customAPI(url);
         try {
-            const response = await api.get(`/${id}`,{
+            const response = await api.get(`/id/${id}`,{
                 headers:{
                     'Access-Control-Allow-Origin': '*',
                     }
@@ -37,18 +37,6 @@ export default class SubjectService{
             return subjects;
         }catch(e){
             console.log("Error getting subjects: ", e);
-        }
-    }
-
-    static async getSubjectsWithoutClass(){
-        const api = customAPI(url);
-        try {
-            const response = await api.get('/no-attendance');
-            let data = await response.data;
-            return data;
-        }catch(e){
-            console.log("Error getting students: ", e);
-            return null;
         }
     }
 
@@ -84,7 +72,7 @@ export default class SubjectService{
     static async getSubjectsWithoutClass(){
         const api = customAPI(url);
         try {
-            const response = await api.get('/no-attendace');
+            const response = await api.get('/no-attendance');
             let data = await response.data;
             return data;
         }catch(e){

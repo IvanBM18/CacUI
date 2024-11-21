@@ -3,6 +3,7 @@ import React from 'react'
 import SubmissionsTable from './SubmissionsTable'
 import { useState, useEffect } from 'react'
 import SubmissionsService from '../../services/submissions/SubmissionsService'
+import { CCallout } from '@coreui/react'
 
 
 
@@ -44,6 +45,7 @@ const SubmissionsDashboard = () => {
       <div>
         <h1>Submissions</h1>
         <p>Envios a los contests organizados por el CAC</p>
+        <CCallout color="info"> Cualquier veredicto diferente a <i>OK</i> o <i>AC</i> representa una respuesta incorrecta</CCallout>
       </div>
       <SubmissionsTable pagination="server" isLoading={loading} submissions={submissions} onPageChange={defaultPageChange} size={rowSize}/>
     </>
