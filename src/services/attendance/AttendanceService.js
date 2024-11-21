@@ -25,6 +25,21 @@ export default class AttendanceService{
         }
     }
 
+    static async getAbsAll(){
+        const api = customAPI(url);
+        try {
+            const response = await api.get('/abs/all');
+            let attendances = await response.data;
+            attendances = attendances.map(attendance => {
+                return attendance;
+            });
+            return attendances;
+        }catch(e){
+            console.log("Error getting attendances: ", e);
+        }
+        return [];
+    }
+
     static async registerAttendance(attendance){
         const api = customAPI(url);
         await api.post('',attendance,{

@@ -1,6 +1,6 @@
 import customAPI from "../api";
 
-const url = import.meta.env.VITE_LOCAL_API_URL + "/api/v1/subject";
+const url = import.meta.env.VITE_API_URL + "/api/v1/subject";
 
 export default class SubjectService{
 
@@ -38,6 +38,23 @@ export default class SubjectService{
         }catch(e){
             console.log("Error getting subjects: ", e);
         }
+    }
+
+
+    static async getAbsAll(){
+        const api = customAPI(url);
+        try {
+            const response = await api.get('/all');
+            let subjects = await response.data;
+            subjects = subjects.map(subject => {
+                subject.classDate = this.formatDate(subject.classDate);
+                return subject;
+            });
+            return subjects;
+        }catch(e){
+            console.log("Error getting subjects: ", e);
+        }
+        return [];
     }
 
     static async edit(subject){
