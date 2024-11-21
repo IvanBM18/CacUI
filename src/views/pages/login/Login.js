@@ -25,27 +25,24 @@ const Login = () => {
   const [password, setPassword] = React.useState('')
   const [error, setError] = React.useState('')
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     console.log(username);
     console.log(password);
+    let userId = null;
     try {
-      const user = UserService.get(username, password);
+      const user = await UserService.get(username, password);
   
-      console.log('Response data:', response.data);
+      console.log('Response data:', user);
+      userId = user.userId;
     } catch (error) {
       setError('Usuario o Contraseña Incorrectos');
       console.error('Error:', error);
     }
 
-    // if(username === 'admin' && password === 'password'){
-    //   console.log('Login')
-    //   navigate('/#')
-    // }
-    // if(username === 'ivan.barba7476@alumnos.udg.mx' && password === 'password'){
-    //   console.log('Login')
-    //   navigate('/#')
-    // }
-    // setError('Usuario o Contraseña Incorrectos')
+    if(userId != null){
+      navigate('/dashboard', { replace: true });
+
+    }
   }
 
   return (
