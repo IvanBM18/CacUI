@@ -4,19 +4,36 @@ import { Container } from "@mui/material";
 import { columns } from "./constants";
 
 const SubmissionsTable = (props) => {
-  let studentId = props.student_id;
-  console.log("Submissions: ", props.submissions);
+  
   return (
     <>
       <Container style={{width: '100%' }}>
         <DataGrid
+          loading={props.isLoading ?? false}
           autoHeight
           rows={props.submissions}
           columns={columns}
           density="compact"
-          hideFooter
           disableSelectionOnClick
+          initialState={{
+            pagination: {
+              paginationModel: {
+                page: 0,
+                pageSize: 20,
+              },
+            },
+          }}
+          paginationMode="server"
+          rowCount={props.size}
+          pageSizeOptions={[20]}
+          autosizeOnMount
           getRowId={(row) => row.submissionId}
+          onPaginationModelChange={(params) => {
+            if(props.onPageChange){
+              props.onPageChange(params);
+            }
+            console.log("No onPageChange function provided: ",params);
+          }}
         />
       </Container>
     </>
