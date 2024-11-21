@@ -14,7 +14,6 @@ import {
   CButton,
 } from '@coreui/react'
 
-import AsistenciasModal from './AsistenciasModal'
 
 // Función para obtener el nombre de la clase desde su ID
 const getClassName = (classId) => {
