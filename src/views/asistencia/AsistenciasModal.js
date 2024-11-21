@@ -81,7 +81,7 @@ const AsistenciasModal = (props) => {
      
     else{
       const newWindow = window.open("", "_blank");
-      const qrData = `${window.location.origin}/qr/${selectedClass.classId}`;
+      const qrData = `${window.location.origin}/#/qr/${selectedClass.classId}`;
     
       QRCode.toDataURL(qrData, { width: 300 }, (err, url) => {
         if (err) {
