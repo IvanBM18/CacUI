@@ -15,6 +15,19 @@ export default class SubmissionsService {
         return result;
     }
 
+    static async getSubmissionsByStudentId(studentId, page =0, size = 20){
+        const api = customAPI(API_URL);
+        const response = await api.get(`/student`, {
+            params:{
+                page,
+                size,
+                id: studentId
+            }});
+        let data = await response.data;
+        return data;
+    }
+
+
     static async getSubmissionByHandle(handle) {
         const api = customAPI(API_URL);
         return api.get(`/handle/${handle}`);

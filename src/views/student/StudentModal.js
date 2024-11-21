@@ -26,7 +26,7 @@ import RegressionUtils from '../../services/ai/RegressionUtils';
 import RegressionData from '../../services/ai/models/regressionData';
 import ContestService from '../../services/contest/ContestService';
 import SubmissionsTable from '../submissions/SubmissionsTable';
-import { mockData } from '../submissions/constants';
+import SubmissionsService from '../../services/submissions/SubmissionsService';
 
 const StudentModal = (props) => {
   
@@ -36,7 +36,7 @@ const StudentModal = (props) => {
   const [isLoadingRegression, setLoadingRegression] = useState(true);
   const [regressionData, setRegressionData] = useState(new RegressionData());
 
-
+  const [rowSize, setSize] = useState(0) 
   const [submissions, setSubmissions] = useState([])
   const [isLoadingSubmissions, setLoadingSubmissions] = useState(false)
   
@@ -50,20 +50,24 @@ const StudentModal = (props) => {
     return result;
   }
 
-  async function getSubmissions(){
+  async function getSubmissions(params){
+    const page = params.page ?? 0;
+    const size = params.pageSize ?? 20;
+
     setLoadingSubmissions(true);
-    if(student.siiauCode === "219747662"){
-      setSubmissions(mockData);
-    }else {
-      try{
-        let result = await ContestService.getSubmissionsByStudentId(student.studentId);
-        console.log("Submissions in modall: ", result);
-        setSubmissions(result);
-      }catch(e){
-        console.error("Error getting submissions: ", e);
-        setSubmissions([]);
-      }
+    
+    try{
+      let result = await SubmissionsService.getSubmissionsByStudentId(student.studentId);
+      console.log("Submissions in modall: ", result);
+      setSubmissions(result);
+      let length = result.length;
+      setSize( length < rowSize ? length : rowSize + result.length);
+    }catch(e){
+      console.error("Error getting submissions: ", e);
+      setSubmissions([]);
+      setSize(0);
     }
+    
     setLoadingSubmissions(false);
   }
 
@@ -214,10 +218,10 @@ const StudentModal = (props) => {
         <CAccordion className='mt-2 mb-2'>
         {mode !== "Create" && 
           <CAccordionItem>
-            <CAccordionHeader onClick={() => getSubmissions()}>Historial de concursos</CAccordionHeader>
+            <CAccordionHeader onClick={() => getSubmissions(0,20)}>Historial de concursos</CAccordionHeader>
             <CAccordionBody className='p-0'>
               {submissions.length > 0 
-                ? <SubmissionsTable submissions={submissions} isLoading={isLoadingSubmissions}/>
+                ? <SubmissionsTable submissions={submissions} isLoading={isLoadingSubmissions} onPageChange={getSubmissions} pagination="server" size={rowSize}/>
                 : <CCallout color='info'>El estudiante no ha participado en ningun concurso</CCallout>}
             </CAccordionBody>
           </CAccordionItem>
