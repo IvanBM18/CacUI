@@ -139,7 +139,7 @@ const TablaAsistencias = () => {
         rowsPerPageOptions={[5]}
         density='compact'
       />
-      {openImport && <Import onClose={() => setOpenImport(!openImport) } />}
+      {openImport && <ImportModal onClose={() => setOpenImport(!openImport) } />}
       {isOpen && <AsistenciasModal onClose={props.onClose} student={props.student} />}
     </Container>
   );
