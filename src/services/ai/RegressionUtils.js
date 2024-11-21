@@ -45,6 +45,7 @@ export default class RegressionUtils{
     }
 
     static isStudentReadyForRegression(data) {
-        return this.isObjectFieldsFilled(data) && data.avgDifficulty.length >= 10 && data.avgCorrect.length >= 10 && data.correctSubmissions.length >= 10;
+        console.log("Data: ", data);
+        return this.isObjectFieldsFilled(data) && data.avgDifficulty.length >= 9 && data.avgCorrect.length >= 9 && data.correctSubmissions.length >= 9;
     }
 }

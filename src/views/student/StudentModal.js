@@ -27,6 +27,7 @@ import RegressionData from '../../services/ai/models/regressionData';
 import ContestService from '../../services/contest/ContestService';
 import SubmissionsTable from '../submissions/SubmissionsTable';
 import SubmissionsService from '../../services/submissions/SubmissionsService';
+import { mockData } from '../submissions/constants';
 
 const StudentModal = (props) => {
   
@@ -34,13 +35,13 @@ const StudentModal = (props) => {
   const [student, setStudent] = useState(props.student);
 
   const [isLoadingRegression, setLoadingRegression] = useState(true);
-  const [regressionData, setRegressionData] = useState(new RegressionData());
+  const [regressionData, setRegressionData] = useState(mockData);
 
   const [rowSize, setSize] = useState(0) 
   const [submissions, setSubmissions] = useState([])
   const [isLoadingSubmissions, setLoadingSubmissions] = useState(false)
+  const [regressionEnabled, setRegressionEnabled] = useState(false);
   
-  let reggresionEnabled = RegressionUtils.isStudentReadyForRegression(regressionData);
   let mode = props.mode;
   let isPredicitionEnabled = mode !== "Create";
   let title = mode === "Create" ? "Agregar Estudiante" : student.firstName + " " + student.lastName;
@@ -55,18 +56,22 @@ const StudentModal = (props) => {
     const size = params.pageSize ?? 20;
 
     setLoadingSubmissions(true);
-    
-    try{
-      let result = await SubmissionsService.getSubmissionsByStudentId(student.studentId); //TODO: Change this to handle
-      console.log("Submissions in modall: ", result);
-      setSubmissions(result);
-      let length = result.length;
-      setSize( length < rowSize ? length : rowSize + result.length);
-    }catch(e){
-      console.error("Error getting submissions: ", e);
-      setSubmissions([]);
-      setSize(0);
+    if(student.siiauCode === "219747662"){
+      setSubmissions(mockData);
+    }else {
+      try{
+        let result = await SubmissionsService.getSubmissionsByStudentId(student.studentId); //TODO: Change this to handle
+        console.log("Submissions in modall: ", result);
+        setSubmissions(result);
+        let length = result.length;
+        setSize( length < rowSize ? length : rowSize + result.length);
+      }catch(e){
+        console.error("Error getting submissions: ", e);
+        setSubmissions([]);
+        setSize(0);
+      }
     }
+    
     
     setLoadingSubmissions(false);
   }
@@ -94,12 +99,16 @@ const StudentModal = (props) => {
     }
     try{
       let summarizedContests = [...resultForEachContest.values()];
-
+      console.log("Summarized Contests: ", summarizedContests);
       let plotInput = RegressionUtils.getAvgsFromContests(summarizedContests);
+      console.log("Plot Input: ", plotInput);
       let prediction = await getPrediction(plotInput);
-      
+      console.log("Prediction: ", prediction);
       plotInput.setResult(prediction);
       setRegressionData(plotInput);
+      let regressionEnabled = RegressionUtils.isStudentReadyForRegression(plotInput); 
+      console.log("Regression Enabled: ", regressionEnabled);
+      setRegressionEnabled(regressionEnabled);
       setLoadingRegression(false);
 
     }catch(e){
@@ -229,12 +238,12 @@ const StudentModal = (props) => {
         }
         {isPredicitionEnabled &&
           <CAccordionItem>
-            <CAccordionHeader onClick={() => performPrediction(testData) }>Predecir desempeño</CAccordionHeader>
+            <CAccordionHeader onClick={performPrediction}>Predecir desempeño</CAccordionHeader>
             <CAccordionBody className=''>  
               <CRow className='justify-content-center'> 
                 {isLoadingRegression 
                 ? <CSpinner color="info" className='align-self-center' />
-                : reggresionEnabled ? <Regression3DPlot data={regressionData} />
+                : regressionEnabled ? <Regression3DPlot data={regressionData} />
                   : <CCallout color='info'>El estudiante debe haber participado en almenos 10 concursos para poder predecir su desempeño</CCallout>
                 }
               </CRow>
