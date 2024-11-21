@@ -25,7 +25,12 @@ const TablaAsistencia = () => {
 
     try {
       selectedIds.forEach((studentId) => {
-        AttendanceService.registerAttendance(null,studentId,selectedClassId);
+        const attendance = {
+          attendanceId: null,
+          studentId: studentId,
+          classId: selectedClassId
+        }
+        AttendanceService.registerAttendance(attendance);
         console.log("datos: ", null, studentId, selectedClassId);
         console.log(`Attendance recorded for student with ID: ${studentId}`);
       });
