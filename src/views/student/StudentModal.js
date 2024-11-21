@@ -57,7 +57,7 @@ const StudentModal = (props) => {
     setLoadingSubmissions(true);
     
     try{
-      let result = await SubmissionsService.getSubmissionsByStudentId(student.studentId);
+      let result = await SubmissionsService.getSubmissionsByStudentId(student.studentId); //TODO: Change this to handle
       console.log("Submissions in modall: ", result);
       setSubmissions(result);
       let length = result.length;
@@ -130,6 +130,7 @@ const StudentModal = (props) => {
   }
   
 
+  console.log("Modal for student: ", student);  
 
   return (
     <DefaultModal
@@ -200,21 +201,21 @@ const StudentModal = (props) => {
             />
           </CCol>
         </CRow>
-        {student.codeProfiles && 
         <CRow className="mt-2 mb-2">
-          {(student.codeProfiles.codeForces || mode === 'Create')&& 
+          {(student.identifier && mode === 'Create')&& 
             <CCol>
               <CFormInput
               type="text"
-              defaultValue={student.codeProfiles.codeForces ?? ""}
+              defaultValue={student.identifier ?? ""}
               id="StudentInputCodeForces"
               label="CodeForces"
               placeholder="" 
               required={false}
-              onChange={(e) => setStudent({...student, codeProfiles: {...student.codeProfiles, codeForces: e.target.value}} )}
+              disabled={mode !== 'Create' || student?.identifier !== ""}
+              onChange={(e) => setStudent({...student, identifier: e.target.value} )}
             />
             </CCol>}
-        </CRow>}
+        </CRow>
         <CAccordion className='mt-2 mb-2'>
         {mode !== "Create" && 
           <CAccordionItem>

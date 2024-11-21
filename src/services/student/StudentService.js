@@ -58,13 +58,16 @@ export default class StudentService {
         const api = customAPI(API_URL);
         student.registerDate = this.reverseFormattedDate(student.registerDate)
         try {
-            await api.post('', student, {
+            let response = await api.post('', student, {
                 headers:{
                     'Access-Control-Allow-Origin': '*',
                     }
             });
+            let data = await response.data;
+            return data;
         }catch(e){
             console.log("Error updating student: ", e);
+            return -1;
         }
     }
 
