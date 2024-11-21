@@ -11,7 +11,6 @@ const getCellColor = (level) => {
 };
 
 export const columns = [
-  { field: 'classId', headerName: 'ID', flex: 1 },
   { field: 'name', headerName: 'Curso', flex: 1 },
   { field: 'description', headerName: 'Descripcion', flex: 1 },
   { field: 'classDate', headerName: 'Dia', flex: 1 },
