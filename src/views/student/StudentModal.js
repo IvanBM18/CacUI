@@ -234,7 +234,7 @@ const StudentModal = (props) => {
               <CRow className='justify-content-center'> 
                 {isLoadingRegression 
                 ? <CSpinner color="info" className='align-self-center' />
-                : reggresionEnabled ? <Regression3DPlot title="Prediccion de problemas resueltos en el proximo contest" data={regressionData} />
+                : reggresionEnabled ? <Regression3DPlot data={regressionData} />
                   : <CCallout color='info'>El estudiante debe haber participado en almenos 10 concursos para poder predecir su desempeño</CCallout>
                 }
               </CRow>

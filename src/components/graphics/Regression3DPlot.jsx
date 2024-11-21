@@ -1,3 +1,4 @@
+import { CCallout } from '@coreui/react';
 import React from 'react';
 import Plot from 'react-plotly.js';
 
@@ -55,12 +56,17 @@ const Regression3DPlot = (props) => {
   return (
     <div >
       {areAllDataValid 
-      ? <Plot
-        style={{ width: '100%', height: '500px' }}
-        data={plotData}
-        layout={layout}
-        config={{ responsive: true }}
-        />
+      ? 
+        <>
+        <CCallout color="info" className='align-self-center'>Prediccion para el proximo contest: {Math.round(prediccion.z)} problemas resuletos</CCallout>
+          <Plot
+            style={{ width: '100%', height: '500px' }}
+            data={plotData}
+            layout={layout}
+            config={{ responsive: true }}
+            />
+        </>
+      
       : <h3>Datos Invalidos</h3>}
     </div>
   );
