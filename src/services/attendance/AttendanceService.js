@@ -25,16 +25,13 @@ export default class AttendanceService{
         }
     }
 
-    static async add(attendanceId, studentId, classId){
+    static async registerAttendance(attendance){
         const api = customAPI(url);
-        try {
-            await api.post('', attendanceId, studentId, classId, {
-                headers:{
-                    'Access-Control-Allow-Origin': '*',
-                    }
-            });
-        }catch(e){
-            console.log("Error updating attendance: ", e);
-        }
+        const response = await api.post('',attendance,{
+            headers:{
+                'Access-Control-Allow-Origin': '*',
+                }
+        });
+        return response.data;
     }
 }

@@ -69,21 +69,38 @@ export default class StudentService {
     }
 
     static async getByCode(siiauCode){
-        const api = customAPI(API_URL);
+        const api = customAPI(API_URL); 
         try {
             const response = await api.get(`/code/${siiauCode}`,{
                 headers:{
                     'Access-Control-Allow-Origin': '*',
-                    }
+                }
             });
             const student = await response.data;
             student.registerDate = this.formatDate(student.registerDate);
             return student
         }catch(e){
             console.log("Error getting student: ", e);
+            return null;
         }
     }
-
+    
+    static async uploadNewStudent(student){
+        const api = customAPI(API_URL); 
+        try {
+            const response = await api.post("",student,{
+                headers:{
+                    'Access-Control-Allow-Origin': '*',
+                }
+            });
+            const result = await response.data;
+            return result;
+        }catch(e){
+            console.log("Error getting student: ", e);
+            return null;
+        }
+    }
+    
     static formatDate(date){
         return new Date(date).toISOString().split('T')[0];
     }

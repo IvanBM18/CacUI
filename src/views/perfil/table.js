@@ -25,7 +25,6 @@ import {
 import avatar1 from '../../assets/images/avatars/1.png'
 import DataPerfil from './data';
 import PerfilModal from './PerfilModal';
-import { students } from '../student/data';
 
 const TablaPerfil = () => {
   const [isOpenStudent, setIsOpenStudent] = useState(false)

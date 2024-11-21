@@ -16,6 +16,7 @@ const SubmissionsTable = (props) => {
           density="compact"
           hideFooter
           disableSelectionOnClick
+          getRowId={(row) => row.submissionId}
         />
       </Container>
     </>

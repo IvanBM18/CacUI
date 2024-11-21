@@ -8,7 +8,7 @@ import { Container } from '@mui/material'
 import StudentService from 'src/services/student/StudentService';
 import SubjectService from 'src/services/subject/SubjectService';
 import AttendanceService from 'src/services/attendance/AttendanceService';
-
+import AsistenciasModal from './AsistenciasModal';
 
 import {
   CButton,
@@ -132,7 +132,7 @@ const TablaAsistencias = () => {
         rowsPerPageOptions={[5]}
         density='compact'
       />
-      { isOpen && <AsistenciasModal onClose={props.onClose} /> }
+      {isOpen && <AsistenciasModal onClose={props.onClose} student={props.student} />}
     </Container>
   );
 };
