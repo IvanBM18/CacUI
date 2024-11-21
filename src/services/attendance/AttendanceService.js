@@ -24,4 +24,14 @@ export default class AttendanceService{
             console.log("Error getting attendances: ", e);
         }
     }
+
+    static async registerAttendance(attendance){
+        const api = customAPI(url);
+        const response = await api.post('',attendance,{
+            headers:{
+                'Access-Control-Allow-Origin': '*',
+                }
+        });
+        return response.data;
+    }
 }

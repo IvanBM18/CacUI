@@ -13,3 +13,7 @@ export function formatDate(dateInString){
     const second = String(date.getSeconds()).padStart(2,'0');
     return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
 }
+
+export function formatDateForReact(date){
+    return new Date(date).toISOString().split('T')[0];
+}
