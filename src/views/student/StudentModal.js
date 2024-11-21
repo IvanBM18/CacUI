@@ -32,10 +32,13 @@ const StudentModal = (props) => {
   
   const [isFormInvalid, setInvalidated] = useState(false);
   const [student, setStudent] = useState(props.student);
-  const [submissions, setSubmissions] = useState([]);
 
-  const [isLoading, setLoading] = useState(true);
+  const [isLoadingRegression, setLoadingRegression] = useState(true);
   const [regressionData, setRegressionData] = useState(new RegressionData());
+
+
+  const [submissions, setSubmissions] = useState([])
+  const [isLoadingSubmissions, setLoadingSubmissions] = useState(false)
   
   let reggresionEnabled = RegressionUtils.isStudentReadyForRegression(regressionData);
   let mode = props.mode;
@@ -48,9 +51,20 @@ const StudentModal = (props) => {
   }
 
   async function getSubmissions(){
+    setLoadingSubmissions(true);
     if(student.siiauCode === "219747662"){
       setSubmissions(mockData);
+    }else {
+      try{
+        let result = await ContestService.getSubmissionsByStudentId(student.studentId);
+        console.log("Submissions in modall: ", result);
+        setSubmissions(result);
+      }catch(e){
+        console.error("Error getting submissions: ", e);
+        setSubmissions([]);
+      }
     }
+    setLoadingSubmissions(false);
   }
 
   const handleSubmit = (event) => {
@@ -67,11 +81,11 @@ const StudentModal = (props) => {
   }
 
   const performPrediction = async () => {
-    setLoading(true);
+    setLoadingRegression(true);
     let resultForEachContest = await ContestService.getStudentSubmissions(student);
     if(!resultForEachContest || resultForEachContest.length <= 5 ){
       console.warn("Something happened retrieving students results")
-      setLoading(false);
+      setLoadingRegression(false);
       return;  
     }
     try{
@@ -82,11 +96,11 @@ const StudentModal = (props) => {
       
       plotInput.setResult(prediction);
       setRegressionData(plotInput);
-      setLoading(false);
+      setLoadingRegression(false);
 
     }catch(e){
       console.error("Error In Prediction: ", e);
-      isLoading(false);
+      isLoadingRegression(false);
     }
 
   }
@@ -203,7 +217,7 @@ const StudentModal = (props) => {
             <CAccordionHeader onClick={() => getSubmissions()}>Historial de concursos</CAccordionHeader>
             <CAccordionBody className='p-0'>
               {submissions.length > 0 
-                ? <SubmissionsTable submissions={submissions} student={student} />
+                ? <SubmissionsTable submissions={submissions} isLoading={isLoadingSubmissions}/>
                 : <CCallout color='info'>El estudiante no ha participado en ningun concurso</CCallout>}
             </CAccordionBody>
           </CAccordionItem>
@@ -213,7 +227,7 @@ const StudentModal = (props) => {
             <CAccordionHeader onClick={() => performPrediction(testData) }>Predecir desempeño</CAccordionHeader>
             <CAccordionBody className=''>  
               <CRow className='justify-content-center'> 
-                {isLoading 
+                {isLoadingRegression 
                 ? <CSpinner color="info" className='align-self-center' />
                 : reggresionEnabled ? <Regression3DPlot title="Prediccion de problemas resueltos en el proximo contest" data={regressionData} />
                   : <CCallout color='info'>El estudiante debe haber participado en almenos 10 concursos para poder predecir su desempeño</CCallout>

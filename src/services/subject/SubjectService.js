@@ -81,6 +81,18 @@ export default class SubjectService{
         }
     }
 
+    static async getSubjectsWithoutClass(){
+        const api = customAPI(url);
+        try {
+            const response = await api.get('/no-attendace');
+            let data = await response.data;
+            return data;
+        }catch(e){
+            console.log("Error getting students: ", e);
+            return null;
+        }
+    }
+
 
     static formatDate(date){
         return new Date(date).toISOString().split('T')[0];

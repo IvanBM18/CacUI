@@ -34,4 +34,11 @@ export default class ContestService {
         }
         return [];
     }
+
+    static async getSubmissionsByStudentId(studentId){
+        const api = customAPI(API_URL);
+        const response = await api.get(`/contest/student/${studentId}`);
+        let data = await response.data;
+        return data;
+    }
 }

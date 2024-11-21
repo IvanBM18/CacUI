@@ -9,20 +9,7 @@ import SubmissionsService from '../../services/submissions/SubmissionsService'
 const SubmissionsDashboard = () => {
   const [submissions, setSubmissions] = useState([])
   const [loading, setLoading] = useState(false)
-  const [rowSize, setSize] = useState(40)
-
-  const onPageChange = async (params) => {
-    const page = params.page ?? 0;
-    const size = params.pageSize ?? 20;
-
-    setLoading(true);
-  
-    var result = await SubmissionsService.getAll(page, size);
-    setSubmissions(result);
-    setSize(rowSize + result.length);
-    setLoading(false);
-  };
-
+  const [rowSize, setSize] = useState(40)  
   
   async function fetchSubmissions() {
     try {
@@ -35,6 +22,18 @@ const SubmissionsDashboard = () => {
     setLoading(false);
   }
 
+  const defaultPageChange = async (params) => {
+    const page = params.page ?? 0;
+    const size = params.pageSize ?? 20;
+
+    setLoading(true);
+
+    var result = await SubmissionsService.getAll(page, size);
+    setSubmissions(result);
+    setSize(rowSize + result.length);
+    setLoading(false);
+  };
+
   useEffect(() => {
     setLoading(true);
     fetchSubmissions();
@@ -46,7 +45,7 @@ const SubmissionsDashboard = () => {
         <h1>Submissions</h1>
         <p>Envios a los contests organizados por el CAC</p>
       </div>
-      <SubmissionsTable isLoading={loading} submissions={submissions} onPageChange={onPageChange} size={rowSize}/>
+      <SubmissionsTable pagination="server" isLoading={loading} submissions={submissions} onPageChange={defaultPageChange} size={rowSize}/>
     </>
   )
 }

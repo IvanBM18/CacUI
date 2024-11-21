@@ -9,9 +9,9 @@ const SubmissionsTable = (props) => {
     <>
       <Container style={{width: '100%' }}>
         <DataGrid
-          loading={props.isLoading ?? false}
+          loading={props.isLoading}
           autoHeight
-          rows={props.submissions}
+          rows={props.submissions} 
           columns={columns}
           density="compact"
           disableSelectionOnClick
@@ -23,7 +23,7 @@ const SubmissionsTable = (props) => {
               },
             },
           }}
-          paginationMode="server"
+          paginationMode={props.pagination ?? "client"}
           rowCount={props.size}
           pageSizeOptions={[20]}
           autosizeOnMount
@@ -31,8 +31,9 @@ const SubmissionsTable = (props) => {
           onPaginationModelChange={(params) => {
             if(props.onPageChange){
               props.onPageChange(params);
+            }else {
+              console.log("no page change function");
             }
-            console.log("No onPageChange function provided: ",params);
           }}
         />
       </Container>
