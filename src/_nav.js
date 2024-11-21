@@ -14,7 +14,8 @@ import {
   cilGroup,
   cilCheck,
   cilListRich,
-  cilCode
+  cilCode,
+  cilContact
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -58,6 +59,12 @@ const _nav = [
     name: 'Submissions',
     to: '/submissions',
     icon: <CIcon icon={cilCode} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Code Forces',
+    to: '/codeProfiles',
+    icon: <CIcon icon={cilContact} customClassName="nav-icon" />,
   },
   // {
   //   component: CNavTitle,
