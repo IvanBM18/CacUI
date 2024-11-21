@@ -14,7 +14,7 @@ import {
   CButton,
 } from '@coreui/react'
 
-//import AsistenciasModal from './AsistenciasModal'
+import AsistenciasModal from './AsistenciasModal'
 
 // Función para obtener el nombre de la clase desde su ID
 const getClassName = (classId) => {
@@ -113,17 +113,9 @@ const TablaAsistencias = () => {
   }
 
   const handleAddButton = () => {
-    setSelectedStudent({
-      firstName: "",
-      lastName: "",
-      code: "",
-      refister_date: "",
-    });
-    setSelectedMode("Create");
+    console.log(subjectsForTable);
     setIsOpen(!isOpen)
   };
-
-  const [isOpenStudent, setIsOpenStudent] = useState(false)
 
 
 
@@ -140,7 +132,7 @@ const TablaAsistencias = () => {
         rowsPerPageOptions={[5]}
         density='compact'
       />
-      {/* {isOpen && <AsistenciasModal onClose={props.onClose} student={props.student} />} */}
+      { isOpen && <AsistenciasModal onClose={props.onClose} /> }
     </Container>
   );
 };

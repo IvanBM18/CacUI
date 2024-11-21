@@ -11,8 +11,10 @@ import { CForm,
   CButton,
   CCardText,
  } from '@coreui/react';
-import { clases } from '../courses/data';
-import { useState } from 'react';
+//import { clases } from '../courses/data';
+import { useEffect, useState } from 'react';
+import StudentService from 'src/services/student/StudentService';
+import SubjectService from 'src/services/subject/SubjectService';
 import QRCode from 'qrcode';
 
 const AsistenciasModal = (props) => {
@@ -21,13 +23,16 @@ const AsistenciasModal = (props) => {
   const [selectedSchedule, setSelectedSchedule] = useState('');
   const [selectedDay, setSelectedDay] = useState('');
   const [selectedMode, setSelectedMode] = useState('');
+  const [subjectsForTable, setSubjects] = useState([]);
+  const [studentsForTable, setStudents] = useState([]);
+
 
 
   // Manejar el cambio en el select
   const handleChange = (event) => {
     const classId = event.target.value;
     setSelectedClassId(classId);
-    const selectedClass = clases.find(clase => clase.class_id === parseInt(classId));
+    const selectedClass = subjectsForTable.find(clase => clase.classId === parseInt(classId));
     setSelectedSchedule(selectedClass ? selectedClass.hora : '');
     setSelectedDay(selectedClass ? selectedClass.dia : '');
   };
@@ -37,19 +42,38 @@ const AsistenciasModal = (props) => {
     setSelectedMode(Mode);
   };
 
+  async function getAllStudents(){
+    console.log("Getting all students")
+    const studentResults = await StudentService.getAll();
+    setStudents(studentResults);
+    console.log("Students: ", studentResults);
+  }
+
+  async function getAllSubjects(){
+    console.log("Getting all subjects")
+    const subjectResults = await SubjectService.getAll();
+    setSubjects(subjectResults);
+    console.log("Subjects: ", subjectResults);
+  }
+
+  useEffect(() => {
+    getAllStudents()
+    getAllSubjects()
+  }, [])
+
   const handleButton = (event) => {
     console.log(selectedClassId);
     console.log(selectedSchedule);
     console.log(selectedDay);
     console.log(selectedMode);
-    const selectedClass = clases.find(clase => clase.class_id === parseInt(selectedClassId));
+    const selectedClass = subjectsForTable.find(clase => clase.classId === parseInt(selectedClassId));
     if(selectedMode === 'lista'){
-      window.location.href = `#/lista/${selectedClass.name}`;
+      window.location.href = `#/lista/${selectedClass.classId}/${selectedClass.name}`;
     }
      
     else{
       const newWindow = window.open("", "_blank");
-      const qrData = `${window.location.origin}/qr/${selectedClass.class_id}`;
+      const qrData = `${window.location.origin}/qr/${selectedClass.classId}`;
     
       QRCode.toDataURL(qrData, { width: 300 }, (err, url) => {
         if (err) {
@@ -111,9 +135,10 @@ const AsistenciasModal = (props) => {
             <option value="" disabled>
               Selecciona una clase
             </option>
-            {clases.map(clase => (
-              <option key={clase.class_id} value={clase.class_id}>
+            {subjectsForTable.map(clase => (
+              <option key={clase.classId} value={clase.classId}>
                 {clase.name}
+                
               </option>
             ))}
           </CFormSelect>
